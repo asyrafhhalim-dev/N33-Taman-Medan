@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N33 Taman Medan - Pelan Strategi, Penjenamaan Calon & Misi 1,000 Ahli (Bajet Sifar)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fef2f2',
+                            100: '#ffe1e1',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            800: '#991b1b',
+                            900: '#7f1d1d',
+                        },
+                        medan: {
+                            navy: '#0f172a',
+                            emerald: '#047857',
+                            amber: '#d97706',
+                            slate: '#334155',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-600 selection:text-white">
+
+    <!-- Chosen Palette: Warm Slate, Selangor Emerald Green (#047857), and Campaign Accent Red (#dc2626) -->
+    <!-- Application Structure Plan: Papan pemuka interaktif ini direka khas dalam Bahasa Melayu standard (DBP) untuk Ketua Bahagian Parti Wawasan Negara Petaling Jaya bagi kawasan DUN N33 Taman Medan. Aplikasi ini mengandungi 7 modul utama:
+         1. Risikan Pilihan Raya & Simpanan Pengundi Tidak Mengundi: Analisis data asas PRN15 (PN 22,028 lwn PH 21,998 - beza 30 undi), takungan ~17,900 pengundi tidak hadir, dan simulator penukaran undi interaktif.
+         2. MISI KHAS 1,000 AHLI BAHARU (2 BULAN / 60 HARI) - STRATEGI BAJET SIFAR / PERCUMA: Pelan tindakan 60 hari tanpa perbelanjaan modal besar, memanfaatkan saluran pendaftaran digital media sosial (TikTok, Facebook, Instagram), rangkaian WhatsApp komuniti, aduan masalah PPR berimpak tinggi, dan program rujukan '1 Bawa 3' (Ahli Bawa Ahli).
+         3. Persona Jenama Calon & Teras Dasar Utama: Memposisikan calon sebagai "Pembela Warga Marhaen Strata & Reformis Komuniti Taman Medan", dengan kad dasar interaktif meliputi perkhidmatan lif flat kos rendah, lesen penjaja kecil, program TVET belia, dan tebatan banjir kilat.
+         4. Taburan 16 PDM N33 Taman Medan: Pangkalan data interaktif 16 PDM rasmi (Baiduri, Kampung Medan, Kawasan Melayu, Medan Pejasa, Petaling Utama, PJS 1, PJS 2, PJS 2C, PJS 2C/12, PJS 2D, PJS 3, PJS 4, Seksyen 4 Petaling Jaya, Seksyen 51, Taman Dato Harun 1, Taman Dato Harun 2).
+         5. Pelan Tindakan Kempen 3 Fasa: Garis masa interaktif merangkumi kerja lapangan komuniti, advokasi dasar, dan penggerakan ejen PACA.
+         6. Matriks Etika Komunikasi Digital & Pematuhan Arahan Negeri: Panduan Wajib & Larangan (Do's & Don'ts) yang mematuhi Titah Diraja Selangor, garis panduan JAIS bagi masjid/surau, serta martabat B40.
+         7. Pelan Tindakan Pencalonan & Kemenangan: Strategi pelaksanaan untuk mendapatkan sokongan pimpinan Parti Wawasan Negara dan pengundi DUN Taman Medan.
+    -->
+    <!-- Visualization & Content Choices: 
+         - Demografi Pengundi -> Carta Donat (Chart.js) -> Memaparkan komposisi pengundi Melayu (67.1%), India (18.3%), Cina (12.4%), dan Lain-lain (2.2%).
+         - Keputusan PRN15 -> Carta Bar (Chart.js) -> Membandingkan jumlah undi PN, PH, PRM, dan Kumpulan Tidak Mengundi (~17,900).
+         - Agihan Kuota Ahli Misi 1,000 -> Carta Donat / Doughnut (Chart.js) -> Menunjukkan pecahan sasaran 1,000 ahli mengikut 4 Zon PDM Utama.
+         - Taburan PDM -> Grid Carian & Tapisan Interaktif (Vanilla JS) -> Membolehkan tapisan segera mengikut Perumahan Strata/PPR, Kampung Melayu Bandaran, Pusat Penjaja/Komersial, dan Kawasan Perindustrian.
+         - Matriks Pematuhan -> Tab Interaktif Mengikut Kategori -> Memastikan pematuhan ketat terhadap protokol awam dan sensitiviti kaum/agama.
+         - TIADA elemen SVG atau Mermaid JS digunakan. Ikon menggunakan watak Unicode dan lencana Tailwind CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-medan-navy text-white shadow-lg border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <span class="bg-medan-emerald text-white text-xs font-bold px-2.5 py-1 rounded tracking-wider uppercase">PWN Petaling Jaya</span>
+                    <span class="font-bold text-lg tracking-tight text-slate-100">Pusat Komando Strategik N33 Taman Medan</span>
+                </div>
+                <nav class="hidden lg:flex space-x-1 text-xs font-medium">
+                    <a href="#electoral-intel" class="px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition">Risikan PRN</a>
+                    <a href="#mission-1000" class="px-3 py-2 rounded-md bg-brand-600/30 text-brand-100 hover:bg-brand-600 hover:text-white transition font-bold border border-brand-500/30">Misi 1,000 Ahli (Percuma)</a>
+                    <a href="#candidate-persona" class="px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition">Persona Calon</a>
+                    <a href="#pdm-topology" class="px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition">Matriks 16 PDM</a>
+                    <a href="#campaign-roadmap" class="px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition">Garis Masa</a>
+                    <a href="#digital-matrix" class="px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition">Panduan Media</a>
+                </nav>
+                <div class="flex items-center space-x-2">
+                    <span class="text-xs bg-emerald-950 text-emerald-200 border border-emerald-500/30 px-3 py-1 rounded-full font-medium hidden sm:inline-block">
+                        Margin PRN15: <strong class="text-white">30 Undi</strong>
+                    </span>
+                    <span class="text-xs bg-brand-900 text-brand-100 border border-brand-500/40 px-3 py-1 rounded-full font-bold">
+                        Misi: 1k Ahli / Bajet Sifar
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Navigation -->
+        <div class="lg:hidden flex justify-around bg-slate-900 py-2 text-[11px] border-t border-slate-800 overflow-x-auto">
+            <a href="#electoral-intel" class="text-slate-300 px-2 py-1">Risikan</a>
+            <a href="#mission-1000" class="text-brand-400 font-bold px-2 py-1">Misi 1k Ahli</a>
+            <a href="#candidate-persona" class="text-slate-300 px-2 py-1">Persona</a>
+            <a href="#pdm-topology" class="text-slate-300 px-2 py-1">16 PDM</a>
+            <a href="#campaign-roadmap" class="text-slate-300 px-2 py-1">Garis Masa</a>
+            <a href="#digital-matrix" class="text-slate-300 px-2 py-1">Panduan Media</a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- Hero & Strategic Vision Banner -->
+        <section class="bg-gradient-to-br from-medan-navy via-slate-900 to-medan-emerald rounded-2xl p-6 sm:p-8 text-white shadow-xl border border-slate-800">
+            <div class="max-w-3xl">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="px-3 py-1 bg-medan-emerald/40 border border-emerald-500/40 text-emerald-200 text-xs font-semibold rounded-full uppercase tracking-wider">
+                        Parti Wawasan Negara • Bahagian Petaling Jaya
+                    </span>
+                    <span class="px-3 py-1 bg-brand-600 text-white text-xs font-bold rounded-full uppercase tracking-wider animate-pulse">
+                        Pelan Bajet Sifar: 1,000 Ahli / 60 Hari
+                    </span>
+                </div>
+                <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">
+                    N33 Taman Medan: Strategi Penjenamaan Calon & Pelan Keahlian PWN
+                </h1>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    Kerangka kerja kempen berasaskan data empirikal untuk Ketua Bahagian Parti Wawasan Negara Petaling Jaya. Menggariskan strategi penjenamaan calon, sasaran kemenangan PRN15 (margin 30 undi), serta **Misi Khas Pendaftaran 1,000 Ahli Baharu dalam tempoh 2 Bulan (60 Hari) Tanpa Perbelanjaan Modal (Bajet Sifar / Percuma)** merangkumi kesemua 16 Pusat Daerah Mengundi (PDM) Taman Medan.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 1: RISIKAN PILIHAN RAYA & DINAMIK PENGUNDI -->
+        <section id="electoral-intel" class="space-y-6">
+            <div class="border-b border-slate-200 pb-4">
+                <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Modul 01</span>
+                <h2 class="text-2xl font-bold text-slate-900">Risikan Pilihan Raya & Dinamik Pengundi</h2>
+                <p class="text-sm text-slate-600 mt-1">
+                    Analisis data rasmi PRN15 Selangor bagi DUN N33 Taman Medan. Menunjukkan bagaimana memobilisasi sebahagian kecil daripada ~17,900 kumpulan pengundi yang tidak hadir (28.9% tidak membuang undi) mampu mengatasi margin kemenangan 30 undi pihak penyandang secara meyakinkan.
+                </p>
+            </div>
+
+            <!-- Key Statistical Metrics -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <span class="text-xs text-slate-500 font-medium block">Pemenang PRN15 (PN-BERSATU)</span>
+                    <span class="text-xl font-bold text-slate-900 mt-1 block">22,028</span>
+                    <span class="text-xs text-emerald-700 font-semibold mt-1 inline-block">49.8% undi sah</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <span class="text-xs text-slate-500 font-medium block">Naib Juara (PH-PKR)</span>
+                    <span class="text-xl font-bold text-slate-900 mt-1 block">21,998</span>
+                    <span class="text-xs text-slate-500 font-semibold mt-1 inline-block">49.7% undi sah</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <span class="text-xs text-slate-500 font-medium block">Margin Kemenangan</span>
+                    <span class="text-xl font-bold text-brand-600 mt-1 block">30 Undi</span>
+                    <span class="text-xs text-brand-700 font-semibold mt-1 inline-block">Kerusi paling sengit</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <span class="text-xs text-slate-500 font-medium block">Jumlah Pengundi Berdaftar</span>
+                    <span class="text-xl font-bold text-slate-900 mt-1 block">61,959</span>
+                    <span class="text-xs text-slate-500 font-semibold mt-1 inline-block">Peratusan Keluar Memundi: 71.1%</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-brand-200 bg-brand-50/30 col-span-2 md:col-span-1">
+                    <span class="text-xs text-brand-800 font-medium block">Simpanan Pengundi Tidak Mengundi</span>
+                    <span class="text-xl font-bold text-brand-700 mt-1 block">~17,900</span>
+                    <span class="text-xs text-brand-800 font-semibold mt-1 inline-block">28.9% tidak hadir mengundi</span>
+                </div>
+            </div>
+
+            <!-- Data Visualizations Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Demographic Profile Chart -->
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-base font-bold text-slate-900 mb-1">Profil Demografi Etnik (N33 Taman Medan)</h3>
+                    <p class="text-xs text-slate-500 mb-4">67.1% pengundi majoriti pekerja Melayu di samping pengundi India (18.3%) dan Cina (12.4%).</p>
+                    <div class="chart-container">
+                        <canvas id="demographicsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- PRN15 Vote Breakdown Chart -->
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-base font-bold text-slate-900 mb-1">Pecahan Undi PRN15 vs. Kumpulan Tidak Mengundi</h3>
+                    <p class="text-xs text-slate-500 mb-4">Perbandingan jumlah undi sah dengan ~17,900 pengundi berdaftar yang tidak hadir mengundi di 16 PDM Taman Medan.</p>
+                    <div class="chart-container">
+                        <canvas id="voteBreakdownChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Voter Conversion Simulator -->
+            <div class="bg-medan-navy text-white p-6 rounded-xl shadow-md border border-slate-800">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Simulator Mobilisasi Pengundi Interaktif</h3>
+                        <p class="text-xs text-slate-400 mt-1">Simulasi pertambahan undi yang diperoleh dengan menggerakkan pengundi di PPR, zon penjaja, dan pusat belia.</p>
+                    </div>
+                    <div class="flex items-center space-x-4 bg-slate-800 p-3 rounded-lg border border-slate-700">
+                        <label for="swingSlider" class="text-xs font-medium text-slate-300">Peralihan Pengundi:</label>
+                        <input id="swingSlider" type="range" min="0.5" max="10" value="3" step="0.5" class="w-32 accent-medan-emerald">
+                        <span id="swingValue" class="text-sm font-bold text-emerald-300">3.0%</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 text-center">
+                    <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700">
+                        <span class="text-xs text-slate-400 block">Pengundi Baharu Diperoleh</span>
+                        <span id="targetVotes" class="text-2xl font-extrabold text-emerald-400 mt-1 block">537</span>
+                        <span class="text-[10px] text-slate-400">Sokongan terus kepada PWN</span>
+                    </div>
+                    <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700">
+                        <span class="text-xs text-slate-400 block">Nisbah Berbanding Margin PRN15</span>
+                        <span id="shiftReq" class="text-2xl font-extrabold text-amber-300 mt-1 block">17.9x</span>
+                        <span class="text-[10px] text-slate-400">Nisbah gandaan mengatasi margin 30 undi</span>
+                    </div>
+                    <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700">
+                        <span class="text-xs text-slate-400 block">Hasil Strategik</span>
+                        <span class="text-sm font-bold text-slate-200 mt-2 block">Peralihan Kerusi Penentu</span>
+                        <span class="text-[10px] text-slate-400">Atasi asas sokongan PN dan PH</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: MISI KHAS 1,000 AHLI PARI WAWASAN NEGARA (2 BULAN - BAJET SIFAR / PERCUMA) -->
+        <section id="mission-1000" class="space-y-6">
+            <div class="border-b border-slate-200 pb-4">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                    <div>
+                        <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Modul 02 • Pelan Tindakan Tanpa Kos</span>
+                        <h2 class="text-2xl font-bold text-slate-900">Misi 1,000 Ahli Baharu PWN (60 Hari) – Strategi Bajet Sifar</h2>
+                    </div>
+                    <span class="bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">
+                        💡 100% Teknik Organik & Percuma
+                    </span>
+                </div>
+                <p class="text-sm text-slate-600 mt-2">
+                    Pelan tindakan berimpak tinggi yang direka khas untuk mengatasi kekangan kewangan. Menggunakan media sosial organik, saluran pendaftaran digital percuma (Borang Google / Pautan QR), jaringan kumpulan WhatsApp komuniti, aduan setempat, dan mekanisme rujukan ahli ("1 Bawa 3") tanpa melibatkan perbelanjaan modal.
+                </p>
+            </div>
+
+            <!-- Strategic Zero-Budget Principles Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-gradient-to-br from-slate-900 to-medan-navy text-white p-4 rounded-xl shadow-sm border border-slate-800">
+                    <span class="text-xs text-slate-300 font-medium block">Sasaran 60 Hari</span>
+                    <span class="text-2xl font-black text-brand-400 mt-1 block">1,000 Ahli</span>
+                    <span class="text-[10px] text-emerald-300 mt-1 block">Kos Pengeluaran: RM 0.00</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <span class="text-xs text-slate-500 font-medium block">Saluran Utama</span>
+                    <span class="text-xl font-bold text-slate-900 mt-1 block">Media Sosial & WA</span>
+                    <span class="text-xs text-medan-emerald font-semibold mt-1 block">TikTok, FB, IG & WhatsApp</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <span class="text-xs text-slate-500 font-medium block">Purata Sasaran Harian</span>
+                    <span class="text-xl font-bold text-slate-900 mt-1 block">~17 Ahli / Hari</span>
+                    <span class="text-xs text-slate-500 font-semibold mt-1 block">~1.1 Ahli per PDM / Hari</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                    <span class="text-xs text-slate-500 font-medium block">Model Rujukan</span>
+                    <span class="text-xl font-bold text-amber-600 mt-1 block">1 Ahli Bawa 3</span>
+                    <span class="text-xs text-slate-500 font-semibold mt-1 block">Pertumbuhan eksponensial</span>
+                </div>
+            </div>
+
+            <!-- 4 Zero-Budget Execution Steps -->
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-6">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center space-x-2">
+                    <span>📱</span>
+                    <span>4 Langkah Pelaksanaan Bajet Sifar (Percuma)</span>
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Step 1 -->
+                    <div class="p-5 rounded-xl border border-slate-200 bg-slate-50 space-y-3 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-medan-navy text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+                            Hari 1 – 15 (Fasa Digital)
+                        </div>
+                        <span class="inline-block text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded">Langkah 1</span>
+                        <h4 class="text-base font-bold text-slate-900">Saluran Digital & Viralisasi Organik TikTok / IG Reels / FB</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Mewujudkan sistem borang dalam talian percuma dan memanfaatkan algoritma media sosial tanpa sebarang kos iklan berbayar.
+                        </p>
+                        <ul class="text-xs text-slate-700 space-y-1.5 list-disc pl-4">
+                            <li><strong>Borang Digital Percuma (Google Form / JotForm):</strong> Sediakan pautan borang keahlian ringkas (1-minit pendaftaran) dan jadikan pautan bio rasmi di TikTok, Instagram, dan Facebook.</li>
+                            <li><strong>Kandungan Video Impak 'Realiti Strata':</strong> Cipta video ringkas (30-60 saat) menggunakan telefon bimbit mengenai masalah lif rosak, parit tersumbat, dan ruang niaga penjaja di PJS 2, PJS 4, dan Baiduri.</li>
+                            <li><strong>Seruan Tindakan (CTA) Keahlian:</strong> Setiap video diakhiri dengan ajakan: *"Tekan pautan di bio untuk sertai PWN & bersama pertahankan hak warga Taman Medan."*</li>
+                        </ul>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="p-5 rounded-xl border border-slate-200 bg-slate-50 space-y-3 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-medan-emerald text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+                            Hari 16 – 30 (Fasa Rangkaian WA)
+                        </div>
+                        <span class="inline-block text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded">Langkah 2</span>
+                        <h4 class="text-base font-bold text-slate-900">Pendekatan Mesra Kumpulan WhatsApp Komuniti & Penduduk</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Memanfaatkan jaringan sosial yang wujud di kawasan kejiranan tanpa memerlukan sebarang bajet penganjuran majlis.
+                        </p>
+                        <ul class="text-xs text-slate-700 space-y-1.5 list-disc pl-4">
+                            <li><strong>E-Poster Digital Percuma (Canva):</strong> Reka e-poster maklumat dasar PWN dan jadual aduan lif untuk diedarkan dalam kumpulan WhatsApp Blok PPR, Penduduk PDM, dan Persatuan Penjaja.</li>
+                            <li><strong>Mesej Siaran (Broadcast) Berkualiti:</strong> Hantar mesej berkala yang memberikan manfaat, seperti panduan permohonan lesen MBPJ, petua keselamatan banjir, dan bantuan guaman JMB.</li>
+                            <li><strong>Duta Sukarela WhatsApp PDM:</strong> Melantik 1 wakil belia secara sukarela bagi setiap 16 PDM untuk menyebarkan pautan pendaftaran di kumpulan komuniti masing-masing.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="p-5 rounded-xl border border-slate-200 bg-slate-50 space-y-3 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-brand-700 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+                            Hari 31 – 45 (Khidmat Lapangan)
+                        </div>
+                        <span class="inline-block text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded">Langkah 3</span>
+                        <h4 class="text-base font-bold text-slate-900">Khidmat Aduan 'Suara Marhaen' (Tanpa Modal)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Turun padang secara konsisten untuk mendengar aduan isu tempatan dan mendaftar ahli secara bersemuka di kawasan tumpuan awam.
+                        </p>
+                        <ul class="text-xs text-slate-700 space-y-1.5 list-disc pl-4">
+                            <li><strong>Kaunter Aduan Bergerak (Meja/Kerusi Sedia Ada):</strong> Buka meja aduan percuma di kawasan lobi lif PPR, medan selera, atau perhentian bas semasa waktu puncak (5 petang – 7 malam).</li>
+                            <li><strong>Bantuan Urus Aduan MBPJ & JPS:</strong> Bantu penduduk menaip dan menghantar surat aduan kerosakan lif atau longkang tersumbat kepada PBT. Minta mereka mendaftar ahli sebagai tanda sokongan moral.</li>
+                            <li><strong>Sesi Sembang Santai Kedai Kopi:</strong> Ketua Bahagian melawat warung-warung kecil untuk berpartisipasi dalam perbualan penduduk secara santai tanpa perbelanjaan majlis rasmi.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="p-5 rounded-xl border border-slate-200 bg-slate-50 space-y-3 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-amber-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+                            Hari 46 – 60 (Rujukan Organik)
+                        </div>
+                        <span class="inline-block text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded">Langkah 4</span>
+                        <h4 class="text-base font-bold text-slate-900">Mekanisme Ahli Bawa Ahli ("1 Bawa 3") & Galakan Organik</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Menggalakkan setiap ahli baharu membawa rakan atau ahli keluarga secara sukarela menerusi semangat kebersamaan.
+                        </p>
+                        <ul class="text-xs text-slate-700 space-y-1.5 list-disc pl-4">
+                            <li><strong>Misi '1 Ahli Ajak 3 Ahli Keluarga/Jiran':</strong> Galakkan setiap ahli yang baharu mendaftar untuk merekrut sekurang-kurangnya 3 ahli keluarga atau jiran serumah.</li>
+                            <li><strong>Pengiktirafan Sukarelawan 'Penggerak Wawasan':</strong> Berikan penganugerahan digital (E-Sijil / Pengumuman di Media Sosial) bagi sukarelawan yang berjaya merekrut ahli teramai.</li>
+                            <li><strong>Penggerak Belia Futsal & Sukan:</strong> Dapatkan sokongan kapten kelab sukan tempatan untuk mengajak rakan pasukannya menyertai PWN sebagai blok sokongan belia.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Breakdown of 1,000 Quota across PDM Clusters -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-slate-100">
+                    <div class="md:col-span-1">
+                        <h4 class="text-sm font-bold text-slate-900 mb-2">Agihan Kuota Ahli Mengikut Zon PDM</h4>
+                        <p class="text-xs text-slate-500 mb-4">
+                            Pengagihan kuota pendaftaran berdasarkan kepadatan penduduk dan potensi pendaftaran organik di 16 PDM Taman Medan.
+                        </p>
+                        <div class="chart-container" style="height: 250px;">
+                            <canvas id="memberQuotaChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Daily Tracker / Calculator -->
+                    <div class="md:col-span-2 bg-slate-900 text-white p-5 rounded-xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="text-sm font-bold text-emerald-400">📊 Simulator Kemajuan Pendaftaran Organik (Bajet Sifar)</h4>
+                                <span class="text-[10px] bg-slate-800 border border-slate-700 px-2.5 py-1 rounded text-slate-300">Pantau Prestasi Saluran Digital & Kerja Lapangan</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                                Laraskan gelongsor di bawah untuk menganggarkan tempoh masa pendaftaran 1,000 ahli berdasarkan jumlah hantaran media sosial dan penggerak sukarela harian.
+                            </p>
+
+                            <div class="space-y-4 bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+                                <div class="flex items-center justify-between text-xs">
+                                    <label for="squadSlider" class="font-medium text-slate-300">Sukarelawan Penggerak Aktif (Digital & Lapangan):</label>
+                                    <span id="squadVal" class="font-bold text-emerald-300">10 Sukarelawan</span>
+                                </div>
+                                <input id="squadSlider" type="range" min="2" max="20" value="10" step="1" class="w-full accent-medan-emerald">
+
+                                <div class="flex items-center justify-between text-xs">
+                                    <label for="dailyPerSquadSlider" class="font-medium text-slate-300">Perekrutan Ahli Organik Setiap Sukarelawan / Hari:</label>
+                                    <span id="dailyPerSquadVal" class="font-bold text-amber-300">2 Ahli / Hari</span>
+                                </div>
+                                <input id="dailyPerSquadSlider" type="range" min="1" max="5" value="2" step="1" class="w-full accent-amber-500">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-3 text-center mt-4 pt-3 border-t border-slate-800">
+                            <div class="bg-slate-800 p-2.5 rounded-lg">
+                                <span class="text-[10px] text-slate-400 block">Kadar Pendaftaran Harian</span>
+                                <span id="totalDailyRate" class="text-lg font-bold text-emerald-400 mt-0.5 block">20 Ahli/Hari</span>
+                            </div>
+                            <div class="bg-slate-800 p-2.5 rounded-lg">
+                                <span class="text-[10px] text-slate-400 block">Masa Dicapai (1,000 Ahli)</span>
+                                <span id="daysToTarget" class="text-lg font-bold text-amber-300 mt-0.5 block">50 Hari</span>
+                            </div>
+                            <div class="bg-slate-800 p-2.5 rounded-lg">
+                                <span class="text-[10px] text-slate-400 block">Status KPI (60 Hari)</span>
+                                <span id="kpiStatus" class="text-xs font-bold text-emerald-300 mt-1 block">✅ MELEBIHI SASARAN</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: PERSONA CALON & TERAS DASAR UTAMA -->
+        <section id="candidate-persona" class="space-y-6">
+            <div class="border-b border-slate-200 pb-4">
+                <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Modul 03</span>
+                <h2 class="text-2xl font-bold text-slate-900">Persona Jenama Calon & Teras Dasar Utama</h2>
+                <p class="text-sm text-slate-600 mt-1">
+                    Memposisikan calon sebagai <strong>"Pembela Warga Marhaen Strata & Reformis Komuniti Taman Medan"</strong>. Menyediakan penyelesaian konkrit bagi isu kediaman PPR, kelangsungan penjaja kecil, peluang pekerjaan belia, dan tebatan banjir kilat.
+                </p>
+            </div>
+
+            <!-- Persona Summary Banner -->
+            <div class="bg-gradient-to-r from-medan-emerald via-slate-900 to-medan-navy p-6 rounded-xl text-white shadow-md border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-2">
+                    <span class="bg-brand-600 text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-wide uppercase">Penjenamaan Strategik</span>
+                    <h3 class="text-xl font-bold text-white">Pembela Warga Marhaen Strata & Reformis Komuniti</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed max-w-2xl">
+                        Seorang pemimpin komuniti yang prihatin dan komited menyelesaikan masalah harian penduduk Taman Medan: membaiki lif PPR yang kerap rosak, mempertahankan hak niaga penjaja kecil, menangani banjir kilat di Kampung Medan dan PJS 2, serta membuka laluan kerjaya TVET untuk belia B40.
+                    </p>
+                </div>
+                <div class="bg-white/10 p-4 rounded-xl border border-white/10 text-center min-w-[220px]">
+                    <span class="text-xs text-emerald-200 font-semibold block">Cogan Kata Kempen</span>
+                    <span class="text-sm font-bold text-white italic mt-1 block">"Martabat Strata, Ekonomi Marhaen, Suara Taman Medan"</span>
+                </div>
+            </div>
+
+            <!-- Policy Pillars Explorer -->
+            <div class="space-y-4">
+                <h3 class="text-base font-bold text-slate-900">Kerangka Dasar Interaktif</h3>
+                <div class="flex flex-wrap gap-2 border-b border-slate-200 pb-2" id="pillarTabs">
+                    <button onclick="switchPillar('p1')" id="tab-p1" class="px-4 py-2 text-sm font-bold rounded-lg bg-medan-emerald text-white transition">
+                        Teras 1: Martabat Strata & Penyelenggaraan Lif
+                    </button>
+                    <button onclick="switchPillar('p2')" id="tab-p2" class="px-4 py-2 text-sm font-bold rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300 transition">
+                        Teras 2: Ekonomi Penjaja Kecil & Perisai B40
+                    </button>
+                    <button onclick="switchPillar('p3')" id="tab-p3" class="px-4 py-2 text-sm font-bold rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300 transition">
+                        Teras 3: TVET Belia & Tebatan Banjir Kilat
+                    </button>
+                </div>
+
+                <!-- Pillar Content Panels -->
+                <div id="pillar-p1" class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="p-2 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-lg">Teras 01</span>
+                        <h4 class="text-lg font-bold text-slate-900">Martabat Perumahan Strata & Jaminan Penyelenggaraan Lif</h4>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Mengembalikan keselesaan hidup di perumahan kos rendah dan PPR PJS 2, PJS 3, PJS 4, dan Baiduri dengan menyelesaikan kerosakan lif, kelewatan pembersihan sampah, dan isu pengurusan JMB.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs pt-2">
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <strong class="text-slate-900 block font-bold mb-1">🛗 Tabung Lif Strata Kecemasan</strong>
+                            Mewujudkan dana padanan kecemasan untuk membaiki lif rosak dengan pantas di PJS 2C, PJS 4, dan Baiduri.
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <strong class="text-slate-900 block font-bold mb-1">🧹 Piagam Perkhidmatan Pihak Berkuasa Tempatan</strong>
+                            Memastikan jadual pembersihan sampah, pencahayaan tangga, dan pembaikan bumbung dipatuhi secara konsisten oleh MBPJ.
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <strong class="text-slate-900 block font-bold mb-1">🏢 Khidmat Nasihat Guaman JMB</strong>
+                            Menyediakan bantuan perundangan dan audit percuma kepada Badan Pengurusan Bersama (JMB) bagi menyelesaikan tunggakan yuran selenggara.
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pillar-p2" class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4 hidden">
+                    <div class="flex items-center space-x-3">
+                        <span class="p-2 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-lg">Teras 02</span>
+                        <h4 class="text-lg font-bold text-slate-900">Pemerkasaan Penjaja Kecil & Perisai Ekonomi B40</h4>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Memelihara kebajikan penjaja kecil, peniaga tepi jalan, dan usahawan mikro di Pasar Kampung Medan, Petaling Utama, dan Taman Dato Harun daripada tindakan penguatkuasaan tanpa pampasan.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs pt-2">
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <strong class="text-slate-900 block font-bold mb-1">🏬 Lesen Penjaja Mesra-Marhaen</strong>
+                            Memudah cara kelulusan permit perniagaan sementara MBPJ dan mewujudkan tapak niaga teratur di PJS 1 dan PJS 3.
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <strong class="text-slate-900 block font-bold mb-1">💳 Pembiayaan Mikro Hijrah Selangor</strong>
+                            Membuka kaunter bantuan untuk membantu peniaga B40 memohon pinjaman pembiayaan mikro tanpa faedah dan peranti pembayaran digital.
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <strong class="text-slate-900 block font-bold mb-1">🥗 Program Bakul Barangan Dapur Komuniti</strong>
+                            Bekerjasama dengan pembekal barangan runcit untuk membolehkan keluarga B40 membeli barangan asas pada harga subsidi.
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pillar-p3" class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4 hidden">
+                    <div class="flex items-center space-x-3">
+                        <span class="p-2 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-lg">Teras 03</span>
+                        <h4 class="text-lg font-bold text-slate-900">Laluan TVET Belia & Tebatan Banjir Kilat Bandar</h4>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Menjana peluang ekonomi untuk anak muda B40 di samping menangani risiko banjir kilat yang berulang di sepanjang parit utama Sungai Klang dan Sungai Penchala.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs pt-2">
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <strong class="text-slate-900 block font-bold mb-1">🛠️ Akademi Kemahiran TVET Belia</strong>
+                            Mengadakan kerjasama dengan kawasan industri Seksyen 51 untuk latihan kemahiran teknikal bercertifikat bagi lepasan sekolah.
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <strong class="text-slate-900 block font-bold mb-1">🌊 Pembersihan Sistem Perparitan Utama</strong>
+                            Mendesak JPS dan MBPJ menjalankan kerja mendalamkan parit dan sungai di Kampung Medan dan PJS 2 secara berkala.
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <strong class="text-slate-900 block font-bold mb-1">⚽ Gelanggang Sukan Komuniti Belia</strong>
+                            Naik taraf gelanggang futsal dan kemudahan riadah belia di kesemua 16 PDM untuk aktiviti kemasyarakatan sihat.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: TABURAN 16 PDM N33 TAMAN MEDAN -->
+        <section id="pdm-topology" class="space-y-6">
+            <div class="border-b border-slate-200 pb-4">
+                <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Modul 04</span>
+                <h2 class="text-2xl font-bold text-slate-900">Taburan 16 Pusat Daerah Mengundi (PDM) Taman Medan</h2>
+                <p class="text-sm text-slate-600 mt-1">
+                    Analisis lengkap mengikut kesemua 16 PDM rasmi DUN N33 Taman Medan. Boleh dicari dan ditapis mengikut profil sosio-demografi, jenis kediaman, kuota ahli, dan keutamaan tindakan di lapangan.
+                </p>
+            </div>
+
+            <!-- Filter & Search Controls -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                <div class="flex items-center space-x-2">
+                    <span class="text-xs font-bold text-slate-700">Kategori Tapisan:</span>
+                    <select id="pdmFilter" onchange="filterPDMs()" class="text-xs bg-slate-50 border border-slate-300 rounded-lg p-2 font-medium text-slate-800 focus:ring-2 focus:ring-medan-emerald focus:outline-none">
+                        <option value="all">Semua 16 PDM</option>
+                        <option value="strata">PPR & Flat Kos Rendah</option>
+                        <option value="village">Kampung Melayu Bandaran</option>
+                        <option value="commercial">Pusat Penjaja & Komersial</option>
+                        <option value="industrial">Kawasan Perindustrian</option>
+                    </select>
+                </div>
+                <div class="relative">
+                    <input type="text" id="pdmSearch" onkeyup="filterPDMs()" placeholder="Cari nama PDM atau lokasi..." class="w-full sm:w-64 text-xs bg-slate-50 border border-slate-300 rounded-lg p-2 pl-3 focus:ring-2 focus:ring-medan-emerald focus:outline-none">
+                </div>
+            </div>
+
+            <!-- PDM Cards Container -->
+            <div id="pdmContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Dynamic Javascript injection -->
+            </div>
+        </section>
+
+        <!-- SECTION 5: PELAN TINDAKAN KEMPEN 3 FASA -->
+        <section id="campaign-roadmap" class="space-y-6">
+            <div class="border-b border-slate-200 pb-4">
+                <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Modul 05</span>
+                <h2 class="text-2xl font-bold text-slate-900">Pelan Tindakan Kempen 3 Fasa</h2>
+                <p class="text-sm text-slate-600 mt-1">
+                    Garis masa perancangan kempen berstruktur bagi DUN N33 Taman Medan, bermula dengan perkhidmatan komuniti hingga advokasi dasar dan penggerakan pengundi pada hari buang undi.
+                </p>
+            </div>
+
+            <!-- Timeline Phase Switches -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <button onclick="switchPhase('ph1')" id="btn-ph1" class="p-4 text-left rounded-xl border-2 border-medan-emerald bg-emerald-50/50 transition">
+                    <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider block">Fasa 1 • Bulan 1–12</span>
+                    <span class="text-sm font-bold text-slate-900 block mt-0.5">Kerja Lapangan & Bantuan Strata</span>
+                </button>
+                <button onclick="switchPhase('ph2')" id="btn-ph2" class="p-4 text-left rounded-xl border border-slate-200 bg-white hover:bg-slate-50 transition">
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Fasa 2 • Bulan 13–24</span>
+                    <span class="text-sm font-bold text-slate-900 block mt-0.5">Advokasi Dasar & Isu Penjaja</span>
+                </button>
+                <button onclick="switchPhase('ph3')" id="btn-ph3" class="p-4 text-left rounded-xl border border-slate-200 bg-white hover:bg-slate-50 transition">
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Fasa 3 • 12 Bulan Terakhir</span>
+                    <span class="text-sm font-bold text-slate-900 block mt-0.5">GOTV & Penggerakan PACA</span>
+                </button>
+            </div>
+
+            <!-- Detailed Phase Content -->
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <!-- Phase 1 Content -->
+                <div id="phase-ph1" class="space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <h3 class="text-base font-bold text-slate-900">Fasa 1: Khidmat Kemasyarakatan & Penyelenggaraan Lif Flat</h3>
+                        <span class="text-xs font-semibold bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded">Bulan 1 – 12</span>
+                    </div>
+                    <p class="text-xs text-slate-600">Bina kredibiliti calon melalui bantuan khidmat nyata di kawasan flat kos rendah sebelum melancarkan penjenamaan politik secara terbuka.</p>
+                    <ul class="space-y-3 text-xs text-slate-700">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-emerald-700 font-bold mt-0.5">✓</span>
+                            <span><strong>Skuad Strata Taman Medan:</strong> Tubuhkan pasukan khidmat kecemasan untuk membantu masalah pencahayaan tangga dan kerosakan kecil JMB di PJS 2, PJS 4, dan Baiduri.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-emerald-700 font-bold mt-0.5">✓</span>
+                            <span><strong>Klinik Lesen Penjaja:</strong> Sediakan kaunter perkhidmatan percuma bagi membantu penjaja kecil di Pasar Kampung Medan memohon lesen MBPJ.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-emerald-700 font-bold mt-0.5">✓</span>
+                            <span><strong>Skuad Sedia Banjir Komuniti:</strong> Anjurkan gotong-royong membersihkan parit bersama penduduk di kawasan berisiko banjir kilat di Kampung Medan dan Seksyen 4.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Phase 2 Content -->
+                <div id="phase-ph2" class="space-y-4 hidden">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <h3 class="text-base font-bold text-slate-900">Fasa 2: Platform Dasar & Peluncuran Manifesto Taman Medan</h3>
+                        <span class="text-xs font-semibold bg-blue-100 text-blue-800 px-2.5 py-1 rounded">Bulan 13 – 24</span>
+                    </div>
+                    <p class="text-xs text-slate-600">Menterjemahkan aktiviti perkhidmatan awam kepada tawaran dasar pembaharuan peringkat Dewan Negeri Selangor.</p>
+                    <ul class="space-y-3 text-xs text-slate-700">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-blue-600 font-bold mt-0.5">✓</span>
+                            <span><strong>Manifesto Marhaen Taman Medan:</strong> Pelancaran dokumen dasar rasmi berkenaan dana pembaikan lif flat, perlindungan penjaja, dan peruntukan TVET belia.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-blue-600 font-bold mt-0.5">✓</span>
+                            <span><strong>Karnival Kerjaya Belia Seksyen 51:</strong> Bekerjasama dengan syarikat perindustrian tempatan untuk menganjurkan ekspo kerjaya untuk belia B40 di Petaling Utama dan PJS 1.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-blue-600 font-bold mt-0.5">✓</span>
+                            <span><strong>Dialog Komuniti Merentas Etnik:</strong> Anjurkan sesi dialog bersama persatuan penduduk di Petaling Utama dan Seksyen 4 mengenai keselamatan dan kemudahan awam.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Phase 3 Content -->
+                <div id="phase-ph3" class="space-y-4 hidden">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <h3 class="text-base font-bold text-slate-900">Fasa 3: Penggerakan Pengundi (GOTV) & Pelantikan Ejen PACA</h3>
+                        <span class="text-xs font-semibold bg-amber-100 text-amber-800 px-2.5 py-1 rounded">12 Bulan Terakhir</span>
+                    </div>
+                    <p class="text-xs text-slate-600">Menukarkan sokongan komuniti kepada undi di saluran pilihan raya merentasi 16 PDM dengan memberi tumpuan kepada kumpulan yang belum membuat keputusan.</p>
+                    <ul class="space-y-3 text-xs text-slate-700">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-amber-600 font-bold mt-0.5">✓</span>
+                            <span><strong>Kempen Ziarah Mesra Rumah ke Rumah:</strong> Lakukan lawatan bersemuka di blok flat kos rendah, memfokuskan kepada pengundi kali pertama.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-amber-600 font-bold mt-0.5">✓</span>
+                            <span><strong>Latihan Ejen Tempat Pengundian & Pengiraan Undi (PACA):</strong> Melatih 320 petugas PACA tempatan yang menguasai kesemua saluran pengundian di 16 PDM.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-amber-600 font-bold mt-0.5">✓</span>
+                            <span><strong>Operasi Semboyan Keluar Memundi:</strong> Sediakan kemudahan pengangkutan bagi membantu warga emas dan pengundi B40 ke pusat pembuangan undi.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: MATRIKS ETIKA KOMUNIKASI DIGITAL & PEMATUHAN ARAHAN NEGERI -->
+        <section id="digital-matrix" class="space-y-6">
+            <div class="border-b border-slate-200 pb-4">
+                <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Modul 06</span>
+                <h2 class="text-2xl font-bold text-slate-900">Matriks Panduan Etika Media Digital (Do's & Don'ts)</h2>
+                <p class="text-sm text-slate-600 mt-1">
+                    Garis panduan media sosial dan kempen lapangan untuk memastikan pematuhan penuh terhadap Titah Diraja Selangor, peraturan JAIS berkaitan masjid/surau, serta keharmonian antara kaum.
+                </p>
+            </div>
+
+            <!-- Domain Category Switches -->
+            <div class="flex flex-wrap gap-2">
+                <button onclick="filterMatrix('all')" id="mTab-all" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-medan-navy text-white">Semua Kategori</button>
+                <button onclick="filterMatrix('royal')" id="mTab-royal" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300">Protokol Diraja & Negeri Selangor</button>
+                <button onclick="filterMatrix('worship')" id="mTab-worship" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300">Masjid & Surau (Garis Panduan JAIS)</button>
+                <button onclick="filterMatrix('strata')" id="mTab-strata" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300">Komuniti Strata & PPR</button>
+                <button onclick="filterMatrix('hawkers')" id="mTab-hawkers" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300">Penjaja Kecil & Peniaga</button>
+                <button onclick="filterMatrix('youth')" id="mTab-youth" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300">Belia & Media Sosial</button>
+            </div>
+
+            <!-- Matrix Cards Container -->
+            <div id="matrixContainer" class="space-y-4">
+                <!-- Dynamic Javascript rendering -->
+            </div>
+        </section>
+
+        <!-- SECTION 7: PELAN TINDAKAN PENCALONAN & KEMENANGAN -->
+        <section class="bg-medan-navy rounded-2xl p-6 sm:p-8 text-white space-y-6">
+            <div class="border-b border-slate-800 pb-4">
+                <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Pelan Kemenangan Calon</span>
+                <h2 class="text-xl sm:text-2xl font-bold text-white mt-1">4 Teras Utama untuk Memenangi DUN N33 Taman Medan</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700">
+                    <strong class="text-emerald-300 text-sm block font-bold mb-2">1. Pencapaian Misi 1,000 Ahli PWN (Bajet Sifar)</strong>
+                    Memaksimalkan pendaftaran ahli secara dalam talian dan organik di PPR serta perumahan awam sebagai asas sokongan akar umbi yang kukuh.
+                </div>
+                <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700">
+                    <strong class="text-emerald-300 text-sm block font-bold mb-2">2. Jalinan Kerjasama Bersama JMB & Peniaga</strong>
+                    Mewujudkan hubungan erat bersama Badan Pengurusan Bersama (JMB) flat, persatuan peniaga Pasar Kampung Medan, dan Rukun Tetangga di 16 PDM.
+                </div>
+                <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700">
+                    <strong class="text-emerald-300 text-sm block font-bold mb-2">3. Juara Reformasi Penyelenggaraan Flat</strong>
+                    Menjadikan Parti Wawasan Negara sebagai jurucakap utama dalam memperjuangkan dana pembaikan lif PPR dan fasiliti perumahan rakyat di Selangor.
+                </div>
+                <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700">
+                    <strong class="text-emerald-300 text-sm block font-bold mb-2">4. Penggerakan Kumpulan Pengundi Tidak Mengundi</strong>
+                    Menguasai sokongan daripada ~17,900 kumpulan pengundi yang tidak hadir mengundi melalui pendekatan bersemuka untuk memastikan kemenangan majoriti selesa.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-medan-navy border-t border-slate-800 text-slate-400 text-xs py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
+            <p class="font-semibold text-slate-300">Parti Wawasan Negara • Pusat Komando Kempen Bahagian Petaling Jaya</p>
+            <p class="text-slate-500">Papan Pemuka Strategi Penjenamaan Calon, Misi Keahlian & PRN DUN N33 Taman Medan</p>
+        </div>
+    </footer>
+
+    <!-- Application JavaScript Logic -->
+    <script>
+        // Data Store: Exact 16 PDMs for N33 Taman Medan with Member Target Quota
+        const pdmStore = [
+            { 
+                id: 1, 
+                name: "Baiduri", 
+                enclaves: "PJS 1/24–PJS 1/30, Pangsapuri Baiduri Blok A-G", 
+                profile: "Kawasan kediaman bertingkat padat kos rendah hingga sederhana yang dihuni keluarga pekerja B40 dan M40.", 
+                priority: "Pemantauan penyelenggaraan JMB, keupayaan dan kefungsian lif, pengurusan tempat letak kereta, serta pencahayaan tangga.", 
+                targetMembers: 90,
+                tags: ["strata"] 
+            },
+            { 
+                id: 2, 
+                name: "Kampung Medan", 
+                enclaves: "Jalan Kampung Medan, Lorong 1-20, Pusat Pasar Kampung Medan", 
+                profile: "Kampung tradisi Melayu bandaran dengan jalinan komuniti yang erat, peniaga kecil, dan warung tempatan.", 
+                priority: "Pembersihan sistem perparitan bagi mengelakkan banjir kilat, bantuan lesen penjaja, dan penyelenggaraan dewan awam.", 
+                targetMembers: 80,
+                tags: ["village", "commercial"] 
+            },
+            { 
+                id: 3, 
+                name: "Kawasan Melayu", 
+                enclaves: "Jalan Kuantan, Lorong Kawasan Melayu, Sekitar Masjid An-Nur", 
+                profile: "Petempatan Melayu bandaran bersejarah dengan komuniti pelbagai generasi serta rangkaian kebajikan tempatan yang aktif.", 
+                priority: "Naik taraf paip kumbahan, bantuan kebajikan warga emas, dan pembaikan kemudahan sukan belia.", 
+                targetMembers: 65,
+                tags: ["village"] 
+            },
+            { 
+                id: 4, 
+                name: "Medan Pejasa", 
+                enclaves: "Taman Medan Pejasa, PJS 1/35 hingga PJS 1/50, Teres Kediaman", 
+                profile: "Kawasan perumahan teres yang didiami penjawat awam, pesara, dan pengusaha perniagaan kecil.", 
+                priority: "Rondaan keselamatan komuniti, penurapan semula jalan, dan penyelenggaraan taman rekreasi.", 
+                targetMembers: 45,
+                tags: ["commercial", "village"] 
+            },
+            { 
+                id: 5, 
+                name: "Petaling Utama", 
+                enclaves: "Taman Petaling Utama, Deretan Kedai Komersial, PJS 1/50", 
+                profile: "Zon perniagaan dan kediaman transit dengan perniagaan mikro, bengkel kenderaan, dan blok pangsapuri.", 
+                priority: "Akses pembiayaan mikro peniaga, bantuan lesen bengkel, dan kelancaran trafik.", 
+                targetMembers: 55,
+                tags: ["commercial", "strata"] 
+            },
+            { 
+                id: 6, 
+                name: "PJS 1", 
+                enclaves: "PJS 1/1 hingga PJS 1/23, Blok Flat Kos Rendah PJS 1", 
+                profile: "Kawasan perumahan pekerja yang padat dengan fasiliti flat uzur dan kepadatan keluarga B40 yang tinggi.", 
+                priority: "Dana kecemasan membaiki lif, pengangkutan sampah pukal, dan pendaftaran TVET belia.", 
+                targetMembers: 70,
+                tags: ["strata", "industrial"] 
+            },
+            { 
+                id: 7, 
+                name: "PJS 2", 
+                enclaves: "PJS 2/1 hingga PJS 2/16, Perumahan PPR PJS 2", 
+                profile: "Skim perumahan bandar yang padat dengan unit strata kos rendah, pekerja ekonomi gig, dan keluarga muda.", 
+                priority: "Kestabilan tekanan air, pencahayaan keselamatan awam, dan pembaikan taman permainan kanak-kanak.", 
+                targetMembers: 85,
+                tags: ["strata"] 
+            },
+            { 
+                id: 8, 
+                name: "PJS 2C", 
+                enclaves: "Blok Flat PJS 2C, Lorong PJS 2C/1-10", 
+                profile: "Enklave flat PPR berketumpatan sangat tinggi dengan cabaran kerosakan lif dan keperluan isi rumah B40.", 
+                priority: "Dana padanan penyelenggaraan lif kecemasan, audit kewangan JMB, dan bantuan bakul makanan.", 
+                targetMembers: 95,
+                tags: ["strata"] 
+            },
+            { 
+                id: 9, 
+                name: "PJS 2C/12", 
+                enclaves: "Kluster Flat PJS 2C/12, Gerai Penjaja Pagi Tempatan", 
+                profile: "Kejiranan bertingkat tinggi dengan penjaja pagi, peniaga tepi jalan, dan penduduk B40.", 
+                priority: "Bantuan permit penjaja, penyediaan tong sampah awam, dan pembaikan gelanggang sukan belia.", 
+                targetMembers: 60,
+                tags: ["strata", "commercial"] 
+            },
+            { 
+                id: 10, 
+                name: "PJS 2D", 
+                enclaves: "Kluster Pangsapuri PJS 2D, Sekitar Surau Al-Islamiah", 
+                profile: "Kejiranan kediaman padat dengan jawatankuasa surau yang aktif dan keluarga golongan pekerja.", 
+                priority: "Pembersihan mendakan parit di jalan utama, naik taraf gelanggang futsal belia, dan bantuan kelas tuisyen.", 
+                targetMembers: 55,
+                tags: ["strata", "village"] 
+            },
+            { 
+                id: 11, 
+                name: "PJS 3", 
+                enclaves: "Taman Medan PJS 3, Sempadan Desa Mentari", 
+                profile: "Enklave B40 berketumpatan tinggi bersebelahan blok perumahan bertingkat dan kedai komersial.", 
+                priority: "Pemantauan penyelenggaraan lif, kaunter bantuan pekerjaan belia, dan pembersihan sampah MBPJ.", 
+                targetMembers: 80,
+                tags: ["strata", "commercial"] 
+            },
+            { 
+                id: 12, 
+                name: "PJS 4", 
+                enclaves: "Kompleks Flat PPR PJS 4, Blok 1-12", 
+                profile: "Komuniti perumahan awam PPR padat yang memerlukan sokongan berterusan bagi fasiliti perumahan strata.", 
+                priority: "Geran penggantian lif, kalis air dan pembaikan kebocoran bumbung, serta program tuisyen percuma.", 
+                targetMembers: 90,
+                tags: ["strata"] 
+            },
+            { 
+                id: 13, 
+                name: "Seksyen 4 Petaling Jaya", 
+                enclaves: "Rumah Teres Seksyen 4, Jalan 4/41-50, Pasar Seksyen 4", 
+                profile: "Kawasan kediaman separa bandar dengan demografi campuran M40/B40, pesara, dan kedai tempatan.", 
+                priority: "Naik taraf perparitan untuk mengelakkan banjir, bantuan warga emas, dan penyelenggaraan taman.", 
+                targetMembers: 35,
+                tags: ["commercial", "village"] 
+            },
+            { 
+                id: 14, 
+                name: "Seksyen 51", 
+                enclaves: "Taman Perindustrian Seksyen 51 & Kuarters Pekerja", 
+                profile: "Pusat perindustrian dan logistik yang dikelilingi perumahan pekerja kilang, bengkel kenderaan, dan premis teknikal.", 
+                priority: "Rangkaian TVET belia bersama industri, kawalan trafik kenderaan berat, dan penyelenggaraan perparitan.", 
+                targetMembers: 30,
+                tags: ["industrial"] 
+            },
+            { 
+                id: 15, 
+                name: "Taman Dato Harun 1", 
+                enclaves: "Jalan Taman Dato Harun, Balai Islam, Enklave Utara", 
+                profile: "Kejiranan kampung Melayu bandaran dengan sejarah politik tempatan, peniaga aktif, dan persatuan komuniti.", 
+                priority: "Tebatan banjir kilat berdekatan laluan sungai, naik taraf gerai penjaja, dan penyelenggaraan dewan awam.", 
+                targetMembers: 35,
+                tags: ["village", "commercial"] 
+            },
+            { 
+                id: 16, 
+                name: "Taman Dato Harun 2", 
+                enclaves: "Sempadan Jalan Klang Lama, Enklave Selatan, Deretan Kedai", 
+                profile: "Zon komersial dan kediaman berdekatan lebuh raya utama, menampilkan gerai tepi jalan dan aliran trafik tinggi.", 
+                priority: "Penyuraian trafik, jaminan keselamatan penjaja kecil, dan akses pengangkutan awam.", 
+                targetMembers: 30,
+                tags: ["commercial", "village"] 
+            }
+        ];
+
+        // Data Store: Matrix Guidelines (Bahasa Melayu Standard)
+        const matrixStore = [
+            {
+                category: "royal",
+                title: "Titah Diraja Selangor & Protokol Negeri",
+                dos: "Menghormati sepenuhnya Duli Yang Maha Mulia Sultan Selangor dan institusi pentadbiran negeri. Menyelaraskan mesej kempen dengan program kebajikan sosial negeri.",
+                donts: "DILARANG SAMA SEKALI mempolitikkan titah diraja atau melibatkan pihak istana dalam perdebatan pilihan raya. Mematuhi protokol rasmi negeri dalam perhimpunan awam."
+            },
+            {
+                category: "worship",
+                title: "Garis Panduan Masjid & Surau (JAIS)",
+                dos: "Menyokong aktiviti kebajikan komuniti yang dianjurkan di luar kawasan rumah ibadat (seperti tajaan kelas mengaji belia atau gotong-royong di dewan komuniti).",
+                donts: "DILARANG SAMA SEKALI menyampaikan ucapan politik, memasang bendera parti, atau mengedar bahan kempen di dalam kawasan masjid atau surau. Patuhi arahan JAIS."
+            },
+            {
+                category: "strata",
+                title: "Komuniti Perumahan Strata & PPR",
+                dos: "Fokus kepada bantuan praktikal komuniti tanpa mengira fahaman politik: dana pembaikan lif, lampu tangga, aduan sampah, dan bantuan audit JMB.",
+                donts: "ELAKKAN daripada mengeksploitasi isu kerosakan flat untuk sensasi media tanpa memberi penyelesaian konkrit. Elakkan janji palsu berhubung tunggakan bil JMB."
+            },
+            {
+                category: "hawkers",
+                title: "Penjaja Kecil & Peniaga Mikro",
+                dos: "Memperjuangkan proses kelulusan permit perniagaan yang adil, tapak berniaga yang bersih, pembiayaan mikro tanpa faedah, dan perlindungan daripada MBPJ.",
+                donts: "ELAKKAN daripada menyokong tapak perniagaan haram yang menghalang laluan trafik atau membahayakan awam. Elakkan provokasi terhadap pegawai penguat kuasa."
+            },
+            {
+                category: "youth",
+                title: "Belia & Kempen Media Sosial",
+                dos: "Mendekati belia bandar menerusi tawaran latihan TVET, hak pekerja gig, naik taraf gelanggang sukan, dan keusahawanan digital di PJS 1 dan Petaling Utama.",
+                donts: "ELAKKAN gaya bahasa yang mengajar atau slogan politik lama. Elakkan pandangan rendah terhadap kerjaya belia B40."
+            }
+        ];
+
+        // Page Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+            renderPDMs(pdmStore);
+            renderMatrix('all');
+            initCalculator();
+            initMemberCalculator();
+        });
+
+        // Initialize Chart.js Data Visualizations
+        function initCharts() {
+            // Demographics Doughnut Chart
+            const ctxDemo = document.getElementById('demographicsChart').getContext('2d');
+            new Chart(ctxDemo, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Melayu (67.1%)', 'India (18.3%)', 'Cina (12.4%)', 'Lain-lain (2.2%)'],
+                    datasets: [{
+                        data: [67.1, 18.3, 12.4, 2.2],
+                        backgroundColor: ['#047857', '#d97706', '#dc2626', '#64748b'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) { return ` ${context.label}: ${context.raw}% pengundi`; }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // PRN15 Outcome Bar Chart
+            const ctxVote = document.getElementById('voteBreakdownChart').getContext('2d');
+            new Chart(ctxVote, {
+                type: 'bar',
+                data: {
+                    labels: ['PN (Pemenang)', 'PH (Naib Juara)', 'PRM', 'Tidak Hadir Mengundi'],
+                    datasets: [{
+                        label: 'Jumlah Pengundi',
+                        data: [22028, 21998, 114, 17900],
+                        backgroundColor: ['#047857', '#dc2626', '#0f172a', '#d97706'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) { return ` Pengundi: ${context.raw.toLocaleString()}`; }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            // Member Quota Distribution Chart (Misi 1,000 Ahli)
+            const ctxMember = document.getElementById('memberQuotaChart').getContext('2d');
+            new Chart(ctxMember, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        'Zon Strata & PPR (450 Ahli)', 
+                        'Zon Kampung Melayu (300 Ahli)', 
+                        'Zon Komersial & Teres (150 Ahli)', 
+                        'Zon Belia & Industri (100 Ahli)'
+                    ],
+                    datasets: [{
+                        data: [450, 300, 150, 100],
+                        backgroundColor: ['#047857', '#d97706', '#0f172a', '#dc2626'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) { return ` ${context.label}`; }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Voter Shift Calculator logic
+        function initCalculator() {
+            const slider = document.getElementById('swingSlider');
+            const swingVal = document.getElementById('swingValue');
+            const targetVotes = document.getElementById('targetVotes');
+            const shiftReq = document.getElementById('shiftReq');
+
+            slider.addEventListener('input', (e) => {
+                const pct = parseFloat(e.target.value);
+                swingVal.innerText = `${pct.toFixed(1)}%`;
+                const newVotes = Math.round(17900 * (pct / 100));
+                targetVotes.innerText = newVotes.toLocaleString();
+                const mult = (newVotes / 30).toFixed(1);
+                shiftReq.innerText = `${mult}x`;
+            });
+        }
+
+        // 1,000 New Members Calculator Logic (Zero-Budget Adaption)
+        function initMemberCalculator() {
+            const squadSlider = document.getElementById('squadSlider');
+            const dailySlider = document.getElementById('dailyPerSquadSlider');
+            const squadVal = document.getElementById('squadVal');
+            const dailyVal = document.getElementById('dailyPerSquadVal');
+            const totalRate = document.getElementById('totalDailyRate');
+            const daysToTarget = document.getElementById('daysToTarget');
+            const kpiStatus = document.getElementById('kpiStatus');
+
+            function updateMemberCalc() {
+                const squads = parseInt(squadSlider.value);
+                const dailyPerSquad = parseInt(dailySlider.value);
+
+                squadVal.innerText = `${squads} Sukarelawan`;
+                dailyVal.innerText = `${dailyPerSquad} Ahli / Hari`;
+
+                const totalDaily = squads * dailyPerSquad;
+                totalRate.innerText = `${totalDaily} Ahli/Hari`;
+
+                const daysNeeded = Math.ceil(1000 / totalDaily);
+                daysToTarget.innerText = `${daysNeeded} Hari`;
+
+                if (daysNeeded <= 60) {
+                    kpiStatus.innerText = "✅ MELEBIHI SASARAN (<= 60 Hari)";
+                    kpiStatus.className = "text-xs font-bold text-emerald-400 mt-1 block";
+                } else {
+                    kpiStatus.innerText = "⚠️ MELEBIHI TEMPOH (> 60 Hari)";
+                    kpiStatus.className = "text-xs font-bold text-rose-400 mt-1 block";
+                }
+            }
+
+            squadSlider.addEventListener('input', updateMemberCalc);
+            dailySlider.addEventListener('input', updateMemberCalc);
+        }
+
+        // Policy Pillar Switcher
+        function switchPillar(pillarId) {
+            ['p1', 'p2', 'p3'].forEach(p => {
+                document.getElementById(`pillar-${p}`).classList.add('hidden');
+                const btn = document.getElementById(`tab-${p}`);
+                btn.className = "px-4 py-2 text-sm font-bold rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300 transition";
+            });
+            document.getElementById(`pillar-${pillarId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${pillarId}`);
+            activeBtn.className = "px-4 py-2 text-sm font-bold rounded-lg bg-medan-emerald text-white transition";
+        }
+
+        // Campaign Phase Switcher
+        function switchPhase(phaseId) {
+            ['ph1', 'ph2', 'ph3'].forEach(p => {
+                document.getElementById(`phase-${p}`).classList.add('hidden');
+                const btn = document.getElementById(`btn-${p}`);
+                btn.className = "p-4 text-left rounded-xl border border-slate-200 bg-white hover:bg-slate-50 transition";
+            });
+            document.getElementById(`phase-${phaseId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`btn-${phaseId}`);
+            activeBtn.className = "p-4 text-left rounded-xl border-2 border-medan-emerald bg-emerald-50/50 transition";
+        }
+
+        // Render PDM Cards
+        function renderPDMs(data) {
+            const container = document.getElementById('pdmContainer');
+            container.innerHTML = '';
+            data.forEach(pdm => {
+                const card = document.createElement('div');
+                card.className = "bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-emerald-600 transition";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] font-bold uppercase bg-slate-100 text-slate-700 px-2 py-0.5 rounded">PDM ${pdm.id} • DUN Taman Medan</span>
+                            <span class="text-[10px] bg-brand-50 text-brand-700 border border-brand-200 font-bold px-2 py-0.5 rounded">Sasaran: ${pdm.targetMembers} Ahli</span>
+                        </div>
+                        <h4 class="text-base font-bold text-slate-900">${pdm.name}</h4>
+                        <p class="text-xs text-emerald-950 font-medium mt-0.5 mb-2">${pdm.enclaves}</p>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-3"><strong>Profil Komuniti:</strong> ${pdm.profile}</p>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 mt-2">
+                        <span class="text-[10px] font-bold text-slate-800 uppercase block mb-1">Keutamaan Strategik:</span>
+                        <p class="text-xs text-slate-700 font-medium">${pdm.priority}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Filter PDM Cards
+        function filterPDMs() {
+            const filterVal = document.getElementById('pdmFilter').value;
+            const searchVal = document.getElementById('pdmSearch').value.toLowerCase();
+
+            const filtered = pdmStore.filter(pdm => {
+                const matchesCategory = (filterVal === 'all') || pdm.tags.includes(filterVal);
+                const matchesSearch = pdm.name.toLowerCase().includes(searchVal) || pdm.enclaves.toLowerCase().includes(searchVal) || pdm.profile.toLowerCase().includes(searchVal);
+                return matchesCategory && matchesSearch;
+            });
+
+            renderPDMs(filtered);
+        }
+
+        // Render Do's & Don'ts Matrix
+        function renderMatrix(category) {
+            const container = document.getElementById('matrixContainer');
+            container.innerHTML = '';
+
+            const filtered = category === 'all' ? matrixStore : matrixStore.filter(m => m.category === category);
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3";
+                card.innerHTML = `
+                    <h4 class="text-base font-bold text-slate-900 border-b border-slate-100 pb-2">${item.title}</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div class="p-3 bg-emerald-50/60 rounded-lg border border-emerald-200/80">
+                            <span class="text-xs font-bold text-emerald-800 uppercase block mb-1">✓ Wajib Dilakukan (Do's)</span>
+                            <p class="text-slate-700 leading-relaxed">${item.dos}</p>
+                        </div>
+                        <div class="p-3 bg-rose-50/60 rounded-lg border border-rose-200/80">
+                            <span class="text-xs font-bold text-rose-800 uppercase block mb-1">✕ Larangan Keras (Don'ts)</span>
+                            <p class="text-slate-700 leading-relaxed">${item.donts}</p>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Update Tab UI
+            ['all', 'royal', 'worship', 'strata', 'hawkers', 'youth'].forEach(c => {
+                const btn = document.getElementById(`mTab-${c}`);
+                if (btn) {
+                    if (c === category) {
+                        btn.className = "px-3 py-1.5 text-xs font-bold rounded-lg bg-medan-navy text-white";
+                    } else {
+                        btn.className = "px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300";
+                    }
+                }
+            });
+        }
+
+        function filterMatrix(category) {
+            renderMatrix(category);
+        }
+    </script>
+</body>
+</html>
