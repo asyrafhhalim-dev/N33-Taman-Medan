@@ -51,6 +51,28 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-600 selection:text-white">
 
+    <!-- Chosen Palette: Warm Slate, Selangor Emerald Green (#047857), and Campaign Accent Red (#dc2626) -->
+    <!-- Application Structure Plan: Papan pemuka interaktif ini direka khas dalam Bahasa Melayu standard (DBP) di bawah Pusat Koordinasi & Strategi Pilihan Raya Petaling Jaya bagi kawasan DUN N33 Taman Medan dengan integrasi logo Parti Wawasan Negara. Aplikasi ini mengandungi modul-modul berikut:
+         0. Pengenalan Parti Wawasan Negara, Relevansi di Mata Rakyat, Pencapaian Terkini & Barisan Majlis Kepimpinan Utama.
+         1. Risikan Pilihan Raya & Simpanan Pengundi Tidak Mengundi: Analisis data asas PRN15 (PN 22,028 lwn PH 21,998 - beza 30 undi), takungan ~17,900 pengundi tidak hadir, dan simulator penukaran undi interaktif.
+         2. MISI KHAS 1,000 AHLI BAHARU (2 BULAN / 60 HARI) - STRATEGI BAJET SIFAR / PERCUMA: Pelan tindakan 60 hari tanpa perbelanjaan modal besar, memanfaatkan saluran pendaftaran digital rasmi (pautan P105 & QR Code), viralisasi organik merangkumi TikTok, IG, FB & Threads, proses tanpa OTP melalui Ketua Bahagian, rangkaian WhatsApp komuniti, aduan masalah PPR berimpak tinggi, dan program rujukan '1 Bawa 3'.
+         3. Persona Jenama Calon & Teras Dasar Utama: Memposisikan calon sebagai "Pembela Warga Marhaen Strata & Reformis Komuniti Taman Medan", dengan kad dasar interaktif meliputi perkhidmatan lif flat kos rendah, lesen penjaja kecil, program TVET belia, dan tebatan banjir kilat.
+         4. Taburan 16 PDM N33 Taman Medan: Pangkalan data interaktif 16 PDM rasmi (Baiduri, Kampung Medan, Kawasan Melayu, Medan Pejasa, Petaling Utama, PJS 1, PJS 2, PJS 2C, PJS 2C/12, PJS 2D, PJS 3, PJS 4, Seksyen 4 Petaling Jaya, Seksyen 51, Taman Dato Harun 1, Taman Dato Harun 2).
+         5. Pelan Tindakan Kempen 3 Fasa: Garis masa interaktif merangkumi kerja lapangan komuniti, advokasi dasar, dan penggerakan ejen PACA.
+         6. Matriks Etika Komunikasi Digital & Pematuhan Arahan Negeri: Panduan Wajib & Larangan (Do's & Don'ts) yang mematuhi Titah Diraja Selangor, garis panduan JAIS bagi masjid/surau, serta martabat B40.
+         7. Pelan Tindakan Pencalonan & Kemenangan: Strategi pelaksanaan untuk mendapatkan sokongan pimpinan Parti Wawasan Negara dan pengundi DUN Taman Medan.
+    -->
+    <!-- Visualization & Content Choices: 
+         - Demografi Pengundi -> Carta Donat (Chart.js) -> Memaparkan komposisi pengundi Melayu (67.1%), India (18.3%), Cina (12.4%), dan Lain-lain (2.2%).
+         - Keputusan PRN15 -> Carta Bar (Chart.js) -> Membandingkan jumlah undi PN, PH, PRM, dan Kumpulan Tidak Mengundi (~17,900).
+         - Agihan Kuota Ahli Misi 1,000 -> Carta Donat / Doughnut (Chart.js) -> Menunjukkan pecahan sasaran 1,000 ahli mengikut 4 Zon PDM Utama.
+         - Profil Kepimpinan PWN -> Kad Grid Foto & Jawatan Kepimpinan Utama -> Menampilkan Presiden, Timbalan, Naib Presiden, SU Agung, Bendahari, Ketua Penerangan & Penyelaras Selangor.
+         - Taburan PDM -> Grid Carian & Tapisan Interaktif (Vanilla JS) -> Membolehkan tapisan segera mengikut Perumahan Strata/PPR, Kampung Melayu Bandaran, Pusat Penjaja/Komersial, dan Kawasan Perindustrian.
+         - Matriks Pematuhan -> Tab Interaktif Mengikut Kategori -> Memastikan pematuhan ketat terhadap protokol awam dan sensitiviti kaum/agama.
+         - TIADA elemen SVG atau Mermaid JS digunakan. Ikon menggunakan watak Unicode dan lencana Tailwind CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
     <!-- Navigation Header -->
     <header class="sticky top-0 z-50 bg-medan-navy text-white shadow-lg border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,6 +92,7 @@
                     <a href="#pdm-topology" class="px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition">Matriks 16 PDM</a>
                     <a href="#campaign-roadmap" class="px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition">Garis Masa</a>
                     <a href="#digital-matrix" class="px-3 py-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 transition">Panduan Media</a>
+                    <a href="#ai-campaign-assistant" class="px-3 py-2 rounded-md bg-gradient-to-r from-emerald-600 to-teal-700 text-white hover:opacity-90 transition font-bold shadow-sm">AI Kempen (Gemini)</a>
                 </nav>
                 <div class="flex items-center space-x-2">
                     <span class="text-xs bg-emerald-950 text-emerald-200 border border-emerald-500/30 px-3 py-1 rounded-full font-medium hidden sm:inline-block">
@@ -90,6 +113,7 @@
             <a href="#pdm-topology" class="text-slate-300 px-2 py-1">16 PDM</a>
             <a href="#campaign-roadmap" class="text-slate-300 px-2 py-1">Garis Masa</a>
             <a href="#digital-matrix" class="text-slate-300 px-2 py-1">Panduan Media</a>
+            <a href="#ai-campaign-assistant" class="text-emerald-300 font-bold px-2 py-1">AI Kempen</a>
         </div>
     </header>
 
@@ -132,66 +156,83 @@
                     <img src="Parti_Wawasan_Negara_logo.svg.webp" alt="Logo PWN" class="h-12 w-auto bg-white p-1 rounded border border-slate-200 shrink-0" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Parti_Wawasan_Negara_logo.svg/512px-Parti_Wawasan_Negara_logo.svg.png';">
                     <div>
                         <span class="text-xs font-bold text-medan-emerald uppercase tracking-widest">Pengenalan Rasmi & Kepimpinan</span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Parti Wawasan Negara (PWN)</h2>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Parti Wawasan Negara (WAWASAN)</h2>
                     </div>
                 </div>
-                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
-                    Wadah perjuangan politik baharu yang berteraskan keadilan sosio-ekonomi, integriti kepimpinan, dan pemerkasaan marhaen. Membawa wawasan segar bagi memastikan setiap lapisan rakyat—khususnya golongan pekerja strata, peniaga kecil, dan generasi belia—mendapat pembelaan yang saksama.
+                <p class="text-sm text-slate-700 mt-3 leading-relaxed font-medium">
+                    Parti Wawasan Negara (WAWASAN) berjuang berteraskan agenda <strong>"Reset Malaysia"</strong> untuk membina sebuah negara yang lebih berintegriti, adil, sejahtera, dan merentas kaum tanpa mengorbankan asas Perlembagaan Persekutuan.
                 </p>
+                <div class="mt-3 p-3 bg-emerald-50 rounded-lg border border-emerald-200 text-xs text-emerald-900 leading-relaxed">
+                    <strong>Falsafah Perjuangan:</strong> Dipandu oleh nilai sejagat untuk <em>"menyeru kepada kebaikan dan kesejahteraan"</em> (amar makruf nahi mungkar) demi kemakmuran seluruh rakyat Malaysia.
+                </div>
             </div>
 
             <!-- Overview & Relevance Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Part 1: Relevansi PWN di Mata Rakyat -->
-                <div class="p-5 rounded-xl bg-emerald-50/50 border border-emerald-200 space-y-3">
+                <!-- Part 1: Agenda Perjuangan Utama -->
+                <div class="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
                     <div class="flex items-center space-x-2">
                         <span class="p-2 bg-emerald-700 text-white text-xs font-bold rounded-lg">01</span>
-                        <h3 class="text-base font-bold text-slate-900">Relevansi PWN di Mata Rakyat</h3>
+                        <h3 class="text-base font-bold text-slate-900">Agenda Perjuangan Utama</h3>
                     </div>
-                    <p class="text-xs text-slate-700 leading-relaxed">
-                        Di tengah-tengah kehangatan politik semasa, rakyat mendahagakan jurucakap jujur yang memahami pergelutan harian B40 dan M40. PWN relevan kerana:
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Teras utama perjuangan Parti Wawasan Negara (WAWASAN) berteraskan tiga paksi pembaharuan:
                     </p>
-                    <ul class="space-y-2 text-xs text-slate-700">
-                        <li class="flex items-start space-x-2">
-                            <span class="text-medan-emerald font-bold mt-0.5">✔</span>
-                            <span><strong>Suara Marhaen Strata:</strong> Memprioritaskan isu nyata seperti kerosakan lif flat PPR, caj selenggara unfairly, dan fasiliti perumahan kos rendah.</span>
-                        </li>
-                        <li class="flex items-start space-x-2">
-                            <span class="text-medan-emerald font-bold mt-0.5">✔</span>
-                            <span><strong>Perisai Peniaga & Penjaja Kecil:</strong> Mempertahankan kelangsungan mata pencarian peniaga mikro daripada tekanan ekonomi dan birokrasi berlebihan.</span>
-                        </li>
-                        <li class="flex items-start space-x-2">
-                            <span class="text-medan-emerald font-bold mt-0.5">✔</span>
-                            <span><strong>Peluang Masa Depan Belia:</strong> Membuka laluan kemahiran TVET bernilai tinggi dan peluang pekerjaan berpendapatan wajar untuk anak muda tempatan.</span>
-                        </li>
-                        <li class="flex items-start space-x-2">
-                            <span class="text-medan-emerald font-bold mt-0.5">✔</span>
-                            <span><strong>Pendekatan Bajet Sifar & Telus:</strong> Bergerak berasaskan kerja lapangan tulen dan sokongan organik komuniti, tanpa politik wang.</span>
-                        </li>
-                    </ul>
+                    <div class="space-y-3 text-xs text-slate-700">
+                        <div class="p-3 bg-white rounded-lg border border-slate-200 space-y-1">
+                            <span class="font-bold text-emerald-800 block text-xs flex items-center gap-1.5">
+                                <span>🤝</span> Gagasan Konsensus Nasional Baharu
+                            </span>
+                            <p class="text-slate-600 leading-relaxed">
+                                Menawarkan politik sederhana dan bersifat perundingan untuk menjadi jambatan penyatuan antara kaum di Malaysia.
+                            </p>
+                        </div>
+                        <div class="p-3 bg-white rounded-lg border border-slate-200 space-y-1">
+                            <span class="font-bold text-emerald-800 block text-xs flex items-center gap-1.5">
+                                <span>🏛️</span> Mempertahankan Asas Jati Diri Negara
+                            </span>
+                            <p class="text-slate-600 leading-relaxed">
+                                Berpaksikan Perlembagaan Persekutuan dan Rukun Negara. Teguh mempertahankan institusi Raja-Raja Melayu, kedudukan Islam sebagai agama Persekutuan, dan hak orang Melayu/Bumiputera, sambil menjamin keadilan bagi hak kaum-kaum lain.
+                            </p>
+                        </div>
+                        <div class="p-3 bg-white rounded-lg border border-slate-200 space-y-1">
+                            <span class="font-bold text-emerald-800 block text-xs flex items-center gap-1.5">
+                                <span>⚖️</span> Urus Tadbir Berintegriti
+                            </span>
+                            <p class="text-slate-600 leading-relaxed">
+                                Memperjuangkan pembentukan kerajaan di Putrajaya yang telus, berlandaskan kedaulatan undang-undang, moral, kebebasan kehakiman, serta akauntabiliti ekonomi.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Part 2: Pencapaian Terkini -->
+                <!-- Part 2: Kenapa WAWASAN Kekal Relevan di Mata Rakyat? -->
                 <div class="p-5 rounded-xl bg-slate-900 text-white space-y-3 border border-slate-800">
                     <div class="flex items-center space-x-2">
                         <span class="p-2 bg-brand-600 text-white text-xs font-bold rounded-lg">02</span>
-                        <h3 class="text-base font-bold text-white">Pencapaian Terkini Parti</h3>
+                        <h3 class="text-base font-bold text-white">Kenapa WAWASAN Kekal Relevan di Mata Rakyat?</h3>
                     </div>
                     <p class="text-xs text-slate-300 leading-relaxed">
-                        Parti Wawasan Negara terus menunjukkan dinamisme positif menerusi pelbagai inisiatif berimpak terus kepada masyarakat:
+                        Meskipun baru ditubuhkan pada Jun 2026, parti ini dengan pantas mendapat tempat dalam lanskap politik atas faktor strategik:
                     </p>
-                    <div class="space-y-2.5 text-xs">
-                        <div class="p-2.5 bg-slate-800 rounded-lg border border-slate-700">
-                            <span class="text-emerald-400 font-bold block mb-0.5">🚀 Pendaftaran Keahlian Digital Pantas</span>
-                            <span class="text-slate-300">Sistem pendaftaran keahlian atas talian tanpa kerenah birokrasi (pautan P105 & tanpa OTP melalui KB) bagi mempercepat pendaftaran rakyat.</span>
+                    <div class="space-y-3 text-xs">
+                        <div class="p-3 bg-slate-800 rounded-lg border border-slate-700 space-y-1">
+                            <span class="text-emerald-400 font-bold block">🎯 Menyasarkan Pengundi Atas Pagar (Kelompok Tengah)</span>
+                            <p class="text-slate-300 leading-relaxed">
+                                WAWASAN memosisikan diri bergerak ke arah kelompok tengah politik. Ini menarik minat pengundi bandar, profesional, golongan kelas menengah, dan anak muda yang mendambakan alternatif politik matang.
+                            </p>
                         </div>
-                        <div class="p-2.5 bg-slate-800 rounded-lg border border-slate-700">
-                            <span class="text-amber-400 font-bold block mb-0.5">🏢 Penubuhan Pusat Koordinasi Strategi P105</span>
-                            <span class="text-slate-300">Pusat gerak kerja khusus di Petaling Jaya untuk menyelaraskan isu perumahan strata dan khidmat komuniti N33 Taman Medan.</span>
+                        <div class="p-3 bg-slate-800 rounded-lg border border-slate-700 space-y-1">
+                            <span class="text-amber-400 font-bold block">⚡ Wajah Baharu Perikatan Nasional (PN)</span>
+                            <p class="text-slate-300 leading-relaxed">
+                                Kehadiran WAWASAN membantu mengikis imej terlalu konservatif yang sering dikaitkan dengan gabungan PN, sekaligus meluaskan pengaruh PN ke wilayah pasaran baharu, khususnya di kawasan pantai barat Malaysia.
+                            </p>
                         </div>
-                        <div class="p-2.5 bg-slate-800 rounded-lg border border-slate-700">
-                            <span class="text-brand-400 font-bold block mb-0.5">🛠️ Skuad Aduan Strata & Khidmat Penjaja</span>
-                            <span class="text-slate-300">Penyerahan aduan berpusat isu lif PPR kepada PBT serta bantuan rundingan lesen untuk penjaja kecil di kawasan bandaran.</span>
+                        <div class="p-3 bg-slate-800 rounded-lg border border-slate-700 space-y-1">
+                            <span class="text-brand-400 font-bold block">👑 Penyatuan Pemimpin Berpengalaman</span>
+                            <p class="text-slate-300 leading-relaxed">
+                                Diterajui oleh figura-figura politik berpengalaman dan negarawan veteran seperti Datuk Seri Hamzah Zainudin dan Tan Sri Dr. Rais Yatim, memberikan keyakinan teguh kepada rakyat dari sudut kestabilan dan wibawa mentadbir.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -202,132 +243,193 @@
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
                         <h3 class="text-lg font-bold text-slate-900">Barisan Majlis Kepimpinan Utama & Penyelaras Selangor</h3>
-                        <p class="text-xs text-slate-500">Saf kepimpinan Parti Wawasan Negara yang mengemudi strategi nasional dan pemerkasaan di peringkat Negeri Selangor.</p>
+                        <p class="text-xs text-slate-500">Saf kepimpinan Parti Wawasan Negara yang mengemudi agenda "Reset Malaysia" di peringkat nasional dan Negeri Selangor.</p>
                     </div>
                     <span class="bg-slate-100 text-slate-800 text-xs font-bold px-3 py-1 rounded-full border border-slate-300 self-start sm:self-auto">
-                        Kepimpinan PWN
+                        Kepimpinan WAWASAN
                     </span>
                 </div>
 
                 <!-- Leadership Grid Cards -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     
-                    <!-- 1. Presiden -->
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center space-y-2 hover:border-emerald-600 transition">
+                    <!-- 1. Pengerusi -->
+                    <div class="bg-gradient-to-b from-amber-50 to-white p-4 rounded-xl border-2 border-amber-400 shadow-sm flex flex-col items-center text-center space-y-2 hover:border-amber-600 transition">
                         <div class="relative">
-                            <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-medan-navy to-medan-emerald flex items-center justify-center text-white text-2xl font-black shadow-md border-2 border-white overflow-hidden">
-                                <span class="bg-medan-navy/80 w-full h-full flex items-center justify-center text-emerald-400 font-bold text-xl">
-                                    SR
-                                </span>
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-slate-900 to-amber-700 flex items-center justify-center text-white text-xl font-black shadow-md border-2 border-white">
+                                <span class="text-amber-300 font-bold text-lg">RY</span>
+                            </div>
+                            <span class="absolute -bottom-1 -right-1 bg-amber-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white">Pengerusi</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-amber-900 uppercase tracking-wider block">Pengerusi</span>
+                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Tan Sri Dr. Rais Yatim</h4>
+                            <span class="text-[11px] text-slate-500 block mt-1">Negarawan & Penasihat Utama</span>
+                        </div>
+                    </div>
+
+                    <!-- 2. Presiden -->
+                    <div class="bg-gradient-to-b from-emerald-50 to-white p-4 rounded-xl border-2 border-emerald-500 shadow-sm flex flex-col items-center text-center space-y-2 hover:border-emerald-600 transition">
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-medan-navy to-medan-emerald flex items-center justify-center text-white text-xl font-black shadow-md border-2 border-white">
+                                <span class="text-emerald-300 font-bold text-lg">HZ</span>
                             </div>
                             <span class="absolute -bottom-1 -right-1 bg-brand-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white">Presiden</span>
                         </div>
                         <div>
-                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider block">Presiden PWN</span>
-                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Syed Rosli bin Syed Yaakob</h4>
-                            <span class="text-[11px] text-slate-500 block mt-1">Pemimpin Utama & Pengasas Wawasan</span>
+                            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider block">Presiden</span>
+                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Datuk Seri Hamzah Zainudin</h4>
+                            <span class="text-[11px] text-slate-500 block mt-1">Ketua Eksekutif & Pengemudi Parti</span>
                         </div>
                     </div>
 
-                    <!-- 2. Timbalan Presiden -->
+                    <!-- 3. Timbalan Presiden -->
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center space-y-2 hover:border-emerald-600 transition">
                         <div class="relative">
-                            <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-slate-700 to-medan-emerald flex items-center justify-center text-white text-2xl font-black shadow-md border-2 border-white overflow-hidden">
-                                <span class="bg-slate-800 w-full h-full flex items-center justify-center text-emerald-300 font-bold text-xl">
-                                    AF
-                                </span>
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-slate-700 to-medan-emerald flex items-center justify-center text-white text-xl font-black shadow-md border-2 border-white">
+                                <span class="text-emerald-300 font-bold text-lg">TLK</span>
                             </div>
                             <span class="absolute -bottom-1 -right-1 bg-medan-emerald text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white">Timbalan</span>
                         </div>
                         <div>
                             <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider block">Timbalan Presiden</span>
-                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Ir. Dr. Ahmad Faizal bin Zakaria</h4>
-                            <span class="text-[11px] text-slate-500 block mt-1">Ketua Penggubal Dasar & Strategi Organisasi</span>
+                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Datuk Tan Lek Khang</h4>
+                            <span class="text-[11px] text-slate-500 block mt-1">Konsensus & Strategi Nasional</span>
                         </div>
                     </div>
 
-                    <!-- 3. Naib Presiden -->
+                    <!-- 4. Naib Presiden 1 -->
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center space-y-2 hover:border-emerald-600 transition">
                         <div class="relative">
-                            <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-slate-700 to-amber-600 flex items-center justify-center text-white text-2xl font-black shadow-md border-2 border-white overflow-hidden">
-                                <span class="bg-slate-800 w-full h-full flex items-center justify-center text-amber-300 font-bold text-xl">
-                                    NZ
-                                </span>
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-slate-800 to-slate-600 flex items-center justify-center text-white text-xl font-black shadow-md border-2 border-white">
+                                <span class="text-slate-200 font-bold text-lg">ARTC</span>
                             </div>
-                            <span class="absolute -bottom-1 -right-1 bg-amber-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white">Naib Pres.</span>
+                            <span class="absolute -bottom-1 -right-1 bg-slate-700 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white">Naib Pres.</span>
                         </div>
                         <div>
-                            <span class="text-[10px] font-bold text-amber-800 uppercase tracking-wider block">Naib Presiden</span>
-                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Prof. Madya Dr. Norazlan bin Shah</h4>
-                            <span class="text-[11px] text-slate-500 block mt-1">Penyelaras Pembangunan Ekonomi & Komuniti</span>
+                            <span class="text-[10px] font-bold text-slate-700 uppercase tracking-wider block">Naib Presiden</span>
+                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Tan Sri Abdul Rahim Thamby Chik</h4>
+                            <span class="text-[11px] text-slate-500 block mt-1">Pengalaman Pembangunan Komuniti</span>
                         </div>
                     </div>
 
-                    <!-- 4. Setiausaha Agung -->
+                    <!-- 5. Naib Presiden 2 -->
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center space-y-2 hover:border-emerald-600 transition">
                         <div class="relative">
-                            <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-slate-700 to-slate-900 flex items-center justify-center text-white text-2xl font-black shadow-md border-2 border-white overflow-hidden">
-                                <span class="bg-slate-800 w-full h-full flex items-center justify-center text-slate-200 font-bold text-xl">
-                                    MR
-                                </span>
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-slate-800 to-emerald-700 flex items-center justify-center text-white text-xl font-black shadow-md border-2 border-white">
+                                <span class="text-emerald-300 font-bold text-lg">WSWJ</span>
+                            </div>
+                            <span class="absolute -bottom-1 -right-1 bg-slate-700 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white">Naib Pres.</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-slate-700 uppercase tracking-wider block">Naib Presiden</span>
+                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Datuk Wan Saiful Wan Jan</h4>
+                            <span class="text-[11px] text-slate-500 block mt-1">Penyelaras Dasar & Sosioekonomi</span>
+                        </div>
+                    </div>
+
+                    <!-- 6. Naib Presiden 3 -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center space-y-2 hover:border-emerald-600 transition">
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-slate-800 to-amber-700 flex items-center justify-center text-white text-xl font-black shadow-md border-2 border-white">
+                                <span class="text-amber-300 font-bold text-lg">LKS</span>
+                            </div>
+                            <span class="absolute -bottom-1 -right-1 bg-slate-700 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white">Naib Pres.</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-slate-700 uppercase tracking-wider block">Naib Presiden</span>
+                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Datuk Leong Kim Soon</h4>
+                            <span class="text-[11px] text-slate-500 block mt-1">Jaringan Komuniti Bandar</span>
+                        </div>
+                    </div>
+
+                    <!-- 7. Naib Presiden 4 -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center space-y-2 hover:border-emerald-600 transition">
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-slate-800 to-teal-700 flex items-center justify-center text-white text-xl font-black shadow-md border-2 border-white">
+                                <span class="text-teal-300 font-bold text-lg">MOM</span>
+                            </div>
+                            <span class="absolute -bottom-1 -right-1 bg-slate-700 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white">Naib Pres.</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-slate-700 uppercase tracking-wider block">Naib Presiden</span>
+                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Datuk Mohd Omar Mustapha</h4>
+                            <span class="text-[11px] text-slate-500 block mt-1">Hal Ehwal Korporat & Ekonomi</span>
+                        </div>
+                    </div>
+
+                    <!-- 8. Naib Presiden 5 -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center space-y-2 hover:border-emerald-600 transition">
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-slate-800 to-cyan-800 flex items-center justify-center text-white text-xl font-black shadow-md border-2 border-white">
+                                <span class="text-cyan-300 font-bold text-lg">HCG</span>
+                            </div>
+                            <span class="absolute -bottom-1 -right-1 bg-slate-700 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white">Naib Pres.</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-slate-700 uppercase tracking-wider block">Naib Presiden</span>
+                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Datuk Huan Cheng Guan</h4>
+                            <span class="text-[11px] text-slate-500 block mt-1">Perpaduan Kaum & Advokasi Awam</span>
+                        </div>
+                    </div>
+
+                    <!-- 9. Setiausaha Agung -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center space-y-2 hover:border-emerald-600 transition">
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-slate-800 to-indigo-900 flex items-center justify-center text-white text-xl font-black shadow-md border-2 border-white">
+                                <span class="text-indigo-200 font-bold text-lg">SA</span>
                             </div>
                             <span class="absolute -bottom-1 -right-1 bg-slate-800 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white">SU Agung</span>
                         </div>
                         <div>
                             <span class="text-[10px] font-bold text-slate-700 uppercase tracking-wider block">Setiausaha Agung</span>
-                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Encik Muhammad Ridzuan bin Abdullah</h4>
-                            <span class="text-[11px] text-slate-500 block mt-1">Pengurusan Pentadbiran & Keahlian Kebangsaan</span>
+                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Datuk Seri Saifuddin Abdullah</h4>
+                            <span class="text-[11px] text-slate-500 block mt-1">Tadbir Urus & Operasi Kebangsaan</span>
                         </div>
                     </div>
 
-                    <!-- 5. Bendahari Agung -->
+                    <!-- 10. Bendahari Agung -->
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center space-y-2 hover:border-emerald-600 transition">
                         <div class="relative">
-                            <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-slate-700 to-emerald-800 flex items-center justify-center text-white text-2xl font-black shadow-md border-2 border-white overflow-hidden">
-                                <span class="bg-slate-800 w-full h-full flex items-center justify-center text-emerald-200 font-bold text-xl">
-                                    ZI
-                                </span>
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-slate-800 to-emerald-900 flex items-center justify-center text-white text-xl font-black shadow-md border-2 border-white">
+                                <span class="text-emerald-200 font-bold text-lg">AT</span>
                             </div>
                             <span class="absolute -bottom-1 -right-1 bg-emerald-800 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white">Bendahari</span>
                         </div>
                         <div>
                             <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider block">Bendahari Agung</span>
-                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Puan Hajah Zaiton binti Ismail</h4>
-                            <span class="text-[11px] text-slate-500 block mt-1">Pengurusan Kewangan & Audit Integriti</span>
+                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Datuk Arifin Tobias</h4>
+                            <span class="text-[11px] text-slate-500 block mt-1">Pengurusan Kewangan & Audit</span>
                         </div>
                     </div>
 
-                    <!-- 6. Ketua Penerangan -->
+                    <!-- 11. Ketua Penerangan -->
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center space-y-2 hover:border-emerald-600 transition">
                         <div class="relative">
-                            <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-brand-800 to-brand-600 flex items-center justify-center text-white text-2xl font-black shadow-md border-2 border-white overflow-hidden">
-                                <span class="bg-brand-900 w-full h-full flex items-center justify-center text-brand-200 font-bold text-xl">
-                                    AH
-                                </span>
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-brand-800 to-brand-600 flex items-center justify-center text-white text-xl font-black shadow-md border-2 border-white">
+                                <span class="text-brand-200 font-bold text-lg">WAF</span>
                             </div>
                             <span class="absolute -bottom-1 -right-1 bg-brand-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white">Penerangan</span>
                         </div>
                         <div>
                             <span class="text-[10px] font-bold text-brand-800 uppercase tracking-wider block">Ketua Penerangan</span>
-                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Encik Amirul Hafiz bin Zainal</h4>
-                            <span class="text-[11px] text-slate-500 block mt-1">Komunikasi Digital & Hal Ehwal Media</span>
+                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Wan Ahmad Fayhsal Wan Ahmad Kamal</h4>
+                            <span class="text-[11px] text-slate-500 block mt-1">Komunikasi Strategik & Hal Ehwal Media</span>
                         </div>
                     </div>
 
-                    <!-- 7. Ketua Penyelaras Negeri Selangor -->
-                    <div class="bg-emerald-50 p-4 rounded-xl border-2 border-emerald-500 shadow-sm flex flex-col items-center text-center space-y-2 col-span-1 sm:col-span-2 md:col-span-1 lg:col-span-2">
+                    <!-- 12. Ketua Penyelaras Negeri Selangor -->
+                    <div class="bg-emerald-50 p-4 rounded-xl border-2 border-emerald-500 shadow-sm flex flex-col items-center text-center space-y-2 hover:border-emerald-600 transition">
                         <div class="relative">
-                            <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-medan-navy via-medan-emerald to-emerald-500 flex items-center justify-center text-white text-2xl font-black shadow-md border-2 border-white overflow-hidden">
-                                <span class="bg-medan-navy w-full h-full flex items-center justify-center text-emerald-300 font-bold text-xl">
-                                    NR
-                                </span>
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-medan-navy via-medan-emerald to-emerald-500 flex items-center justify-center text-white text-xl font-black shadow-md border-2 border-white">
+                                <span class="text-emerald-300 font-bold text-lg">SMG</span>
                             </div>
-                            <span class="absolute -bottom-1 -right-1 bg-medan-emerald text-white text-[9px] font-bold px-2 py-0.5 rounded-full border border-white">Selangor</span>
+                            <span class="absolute -bottom-1 -right-1 bg-medan-emerald text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white">Selangor</span>
                         </div>
                         <div>
-                            <span class="text-[10px] font-bold text-emerald-900 uppercase tracking-wider block">Ketua Penyelaras Negeri Selangor</span>
-                            <h4 class="text-base font-extrabold text-slate-900 leading-tight mt-0.5">Kapten (B) Nik Abdul Rahman bin Nik Hassan</h4>
-                            <span class="text-[11px] text-emerald-800 font-medium block mt-1">Pengarah Strategi Operasi PRN & Gerak Kerja Negeri Selangor</span>
+                            <span class="text-[10px] font-bold text-emerald-900 uppercase tracking-wider block">Ketua Penyelaras Selangor</span>
+                            <h4 class="text-sm font-extrabold text-slate-900 leading-tight mt-0.5">Datuk Suhaimi Mohd Ghazali</h4>
+                            <span class="text-[11px] text-emerald-800 font-medium block mt-1">Penyelaras Operasi Pilihan Raya Negeri Selangor</span>
                         </div>
                     </div>
 
@@ -480,7 +582,7 @@
                 </h3>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Step 1 -->
+                    <!-- Step 1: UPDATED WITH THREADS INTEGRATION -->
                     <div class="p-5 rounded-xl border-2 border-emerald-500 bg-emerald-50/30 space-y-4 relative overflow-hidden shadow-sm">
                         <div class="absolute top-0 right-0 bg-medan-emerald text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
                             Hari 1 – 15 (Fasa Digital)
@@ -950,6 +1052,146 @@
             <div id="matrixContainer" class="space-y-4">
                 <!-- Dynamic Javascript rendering -->
             </div>
+        </section>
+
+        <!-- SECTION 8: PEMBANTU KEMPEN AI & PENJANA KANDUNGAN PDM (POWERED BY GEMINI API) -->
+        <section id="ai-campaign-assistant" class="space-y-6 bg-slate-900 text-white p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-64 h-64 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="border-b border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 uppercase tracking-widest">
+                            Dikuasakan Oleh Gemini 3 Flash
+                        </span>
+                        <span class="text-xs text-slate-400">• Pembantu Strategik Digital</span>
+                    </div>
+                    <h2 class="text-2xl font-black text-white mt-1">Pembantu Kempen & Kandungan AI Taman Medan</h2>
+                    <p class="text-xs text-slate-400 mt-1">
+                        Gunakan kecerdasan buatan LLM untuk menjana mesej kempen hiper-lokal mengikut PDM serta menyemak pematuhan etika secara serta-merta.
+                    </p>
+                </div>
+                <div class="flex items-center space-x-2 shrink-0">
+                    <button onclick="switchAiTab('generator')" id="tabBtnGenerator" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white transition">
+                        ⚡ Penjana Kandungan PDM
+                    </button>
+                    <button onclick="switchAiTab('compliance')" id="tabBtnCompliance" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+                        🛡️ Semakan Pematuhan
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab 1: AI Content & Script Generator -->
+            <div id="aiGeneratorView" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div>
+                        <label class="block font-semibold text-slate-300 mb-1.5">Pusat Daerah Mengundi (PDM):</label>
+                        <select id="aiPdmSelect" class="w-full bg-slate-800 border border-slate-700 text-slate-100 rounded-lg p-2.5 focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                            <option value="Baiduri (Pangsapuri Baiduri Blok A-G)">PDM 1: Baiduri (Strata B40/M40)</option>
+                            <option value="Kampung Medan (Lorong 1-20 & Pasar Kg Medan)">PDM 2: Kampung Medan (Peniaga/Parit)</option>
+                            <option value="Kawasan Melayu (Masjid An-Nur)">PDM 3: Kawasan Melayu (Komuniti Tradisi)</option>
+                            <option value="Medan Pejasa (PJS 1/35-50)">PDM 4: Medan Pejasa (Teres & Pesara)</option>
+                            <option value="Petaling Utama (Pusat Komersial & Bengkel)">PDM 5: Petaling Utama (Peniaga Mikro)</option>
+                            <option value="PJS 1 (Flat Kos Rendah PJS 1)">PDM 6: PJS 1 (Pekerja Strata/Lif)</option>
+                            <option value="PJS 2 (PPR PJS 2)">PDM 7: PJS 2 (Pekerja Gig/Air/Taman)</option>
+                            <option value="PJS 2C (Kluster Flat PPR PJS 2C)">PDM 8: PJS 2C (Lif Rosak/B40 Padat)</option>
+                            <option value="PJS 2C/12 (Flat & Gerai Penjaja Pagi)">PDM 9: PJS 2C/12 (Penjaja Pagi/Belia)</option>
+                            <option value="PJS 2D (Pangsapuri & Surau Al-Islamiah)">PDM 10: PJS 2D (Parit Sering Tersumbat)</option>
+                            <option value="PJS 3 (Sempadan Desa Mentari)">PDM 11: PJS 3 (Kepadatan B40 & Belia)</option>
+                            <option value="PJS 4 (Kompleks Flat PPR PJS 4 Blok 1-12)">PDM 12: PJS 4 (Isu Lif & Bumbung Bocor)</option>
+                            <option value="Seksyen 4 Petaling Jaya (Pasar & Teres)">PDM 13: Seksyen 4 (Parit/Warga Emas)</option>
+                            <option value="Seksyen 51 (Kawasan Perindustrian & Pekerja Kilang)">PDM 14: Seksyen 51 (TVET & Pekerja)</option>
+                            <option value="Taman Dato Harun 1 (Balai Islam & Melayu Bandar)">PDM 15: Taman Dato Harun 1 (Banjir Kilat)</option>
+                            <option value="Taman Dato Harun 2 (Sempadan Jalan Klang Lama)">PDM 16: Taman Dato Harun 2 (Trafik & Penjaja)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold text-slate-300 mb-1.5">Format Saluran:</label>
+                        <select id="aiPlatformSelect" class="w-full bg-slate-800 border border-slate-700 text-slate-100 rounded-lg p-2.5 focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                            <option value="Skrip Video TikTok / Reels (30-60 saat)">🎬 Skrip Video TikTok / Reels (30-60 saat)</option>
+                            <option value="Bebenang Bertulis Threads / X">🧵 Bebenang Bertulis Threads / X</option>
+                            <option value="Mesej Siaran (Broadcast) WhatsApp Komuniti">💬 Mesej WhatsApp Komuniti / Blok PPR</option>
+                            <option value="Hantaran Gambar & Teks Facebook Komuniti">📘 Hantaran Facebook Komuniti Penduduk</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold text-slate-300 mb-1.5">Tona & Gaya Bahasa:</label>
+                        <select id="aiToneSelect" class="w-full bg-slate-800 border border-slate-700 text-slate-100 rounded-lg p-2.5 focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                            <option value="Prihatin & Mesra Marhaen (Fokus penyelesaian masalah)">❤️ Prihatin & Marhaen (Fokus Penyelesaian)</option>
+                            <option value="Tegas & Berani Menuntut Hak Rakyat (Reformis Strata)">🔥 Tegas & Reformis (Tuntut Hak Strata)</option>
+                            <option value="Informatif & Berpanduan (Panduan lesen/bantuan/banjir)">💡 Informatif & Panduan Bantuan</option>
+                            <option value="Dinamik & Santai untuk Generasi Belia">⚡ Dinamik & Mesra Belia</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="text-xs">
+                    <label class="block font-semibold text-slate-300 mb-1.5">Isu Khusus / Sorotan Tambahan (Pilihan):</label>
+                    <input type="text" id="aiSpecificIssue" placeholder="Cth: Lif Blok 3 rosak 2 minggu, permohonan lesen penjaja gerai pagi, atau latihan TVET belia..." class="w-full bg-slate-800 border border-slate-700 text-slate-100 rounded-lg p-2.5 focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                </div>
+
+                <div class="flex items-center justify-between pt-2">
+                    <span class="text-[11px] text-slate-400">
+                        ✨ Menjana mesej dengan seruan tindakan (CTA) rasmi pautan P105 & kod QR.
+                    </span>
+                    <button onclick="generateAiCampaignContent()" id="btnRunAi" class="px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold rounded-lg shadow-lg flex items-center space-x-2 transition cursor-pointer">
+                        <span>✨ Jana Kandungan AI</span>
+                    </button>
+                </div>
+
+                <!-- Result Box -->
+                <div id="aiOutputContainer" class="hidden bg-slate-950/90 border border-slate-800 rounded-xl p-5 space-y-3">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Hasil Kandungan AI</span>
+                        </div>
+                        <button onclick="copyAiOutput()" id="btnCopyOutput" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1 rounded border border-slate-700 transition">
+                            📋 Salin Teks
+                        </button>
+                    </div>
+                    <div id="aiOutputText" class="text-xs text-slate-200 leading-relaxed whitespace-pre-wrap font-sans">
+                        <!-- AI text will be injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: AI Compliance & Sentiment Checker -->
+            <div id="aiComplianceView" class="hidden space-y-4 text-xs">
+                <div>
+                    <label class="block font-semibold text-slate-300 mb-1.5">Tampal Draf Teks Kempen / Ucapan Anda untuk Disemak:</label>
+                    <textarea id="complianceInputText" rows="4" placeholder="Tulis atau tampal draf hantaran media sosial, kenyataan media, atau mesej WhatsApp yang ingin disemak sebelum diterbitkan..." class="w-full bg-slate-800 border border-slate-700 text-slate-100 rounded-lg p-3 focus:ring-2 focus:ring-emerald-500 focus:outline-none"></textarea>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <p class="text-[11px] text-slate-400">
+                        🛡️ AI akan mengesahkan pematuhan Titah Diraja Selangor, panduan JAIS bagi masjid/surau, serta sensitiviti kaum & agama.
+                    </p>
+                    <button onclick="checkAiCompliance()" id="btnRunCompliance" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-lg shadow-lg flex items-center space-x-2 transition cursor-pointer">
+                        <span>🛡️ Semak Pematuhan & Etika</span>
+                    </button>
+                </div>
+
+                <div id="complianceOutputContainer" class="hidden bg-slate-950/90 border border-slate-800 rounded-xl p-5 space-y-3">
+                    <div class="flex items-center space-x-2 border-b border-slate-800 pb-2">
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Laporan Audit Pematuhan Kempen</span>
+                    </div>
+                    <div id="complianceOutputText" class="text-xs text-slate-200 leading-relaxed whitespace-pre-wrap">
+                        <!-- Compliance report -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="aiLoadingSpinner" class="hidden flex flex-col items-center justify-center py-8 space-y-3">
+                <div class="w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+                <span class="text-xs text-emerald-400 font-medium animate-pulse">Gemini 3 Flash sedang memproses strategi...</span>
+            </div>
+
+            <!-- Custom Notification Message Box -->
+            <div id="aiMessageBox" class="hidden p-3 rounded-lg text-xs font-medium"></div>
         </section>
 
         <!-- SECTION 7: PELAN TINDAKAN PENCALONAN & KEMENANGAN -->
@@ -1433,6 +1675,199 @@
 
         function filterMatrix(category) {
             renderMatrix(category);
+        }
+
+        // Tab Switcher for AI Assistant
+        function switchAiTab(tab) {
+            const genView = document.getElementById('aiGeneratorView');
+            const compView = document.getElementById('aiComplianceView');
+            const btnGen = document.getElementById('tabBtnGenerator');
+            const btnComp = document.getElementById('tabBtnCompliance');
+
+            if (tab === 'generator') {
+                genView.classList.remove('hidden');
+                compView.classList.add('hidden');
+                btnGen.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white transition";
+                btnComp.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition";
+            } else {
+                genView.classList.add('hidden');
+                compView.classList.remove('hidden');
+                btnGen.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition";
+                btnComp.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white transition";
+            }
+        }
+
+        // Show Temporary Message in In-Page Notification Box
+        function showAiMessage(msg, isError = false) {
+            const box = document.getElementById('aiMessageBox');
+            box.innerText = msg;
+            box.className = isError 
+                ? "p-3 rounded-lg text-xs font-medium bg-rose-950/80 border border-rose-800 text-rose-200 block" 
+                : "p-3 rounded-lg text-xs font-medium bg-emerald-950/80 border border-emerald-800 text-emerald-200 block";
+            setTimeout(() => {
+                box.className = "hidden";
+            }, 6000);
+        }
+
+        // Copy Text Function Using document.execCommand for iFrame Compatibility
+        function copyAiOutput() {
+            const text = document.getElementById('aiOutputText').innerText;
+            if (!text) return;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                const btn = document.getElementById('btnCopyOutput');
+                btn.innerText = "✅ Telah Disalin!";
+                setTimeout(() => { btn.innerText = "📋 Salin Teks"; }, 2500);
+            } catch (err) {
+                showAiMessage("Gagal menyalin teks secara automatik. Sila salin secara manual.", true);
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // Gemini API Caller with Exponential Backoff
+        async function fetchGeminiWithBackoff(payload, retries = 3, delay = 1000) {
+            const apiKey = ""; // Provided dynamically by canvas environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        return await response.json();
+                    }
+
+                    if (response.status === 429 && i < retries - 1) {
+                        await new Promise(res => setTimeout(res, delay * Math.pow(2, i)));
+                        continue;
+                    }
+
+                    throw new Error(`API returned status ${response.status}`);
+                } catch (error) {
+                    if (i === retries - 1) throw error;
+                    await new Promise(res => setTimeout(res, delay * Math.pow(2, i)));
+                }
+            }
+        }
+
+        // Generator: Generate Content for specific PDM and Channel
+        async function generateAiCampaignContent() {
+            const pdm = document.getElementById('aiPdmSelect').value;
+            const platform = document.getElementById('aiPlatformSelect').value;
+            const tone = document.getElementById('aiToneSelect').value;
+            const issue = document.getElementById('aiSpecificIssue').value.trim();
+
+            const spinner = document.getElementById('aiLoadingSpinner');
+            const outContainer = document.getElementById('aiOutputContainer');
+            const outText = document.getElementById('aiOutputText');
+            const btn = document.getElementById('btnRunAi');
+
+            spinner.classList.remove('hidden');
+            outContainer.classList.add('hidden');
+            btn.disabled = true;
+
+            const systemPrompt = `Anda adalah Penasihat Utama Komunikasi & Strategi Pilihan Raya untuk Parti Wawasan Negara (PWN) bagi DUN N33 Taman Medan, Petaling Jaya.
+Karakter Calon: "Pembela Warga Marhaen Strata & Reformis Komuniti Taman Medan".
+Prinsip Kempen: Bajet Sifar, berintegriti, fokus isu sebenar B40 (kerosakan lif flat PPR, lesen penjaja kecil, tebatan banjir kilat, TVET belia).
+Pematuhan Wajib: Patuhi Titah Diraja Selangor (jangan libatkan istana), patuhi JAIS (jangan kempen dalam masjid/surau), elakkan sentimen perkauman sempit, dan utamakan perpaduan.
+Setiap kandungan MESTI menyertakan seruan tindakan (CTA) rasmi: "Tekan pautan di bio untuk sertai Parti Wawasan Negara secara percuma melalui Bahagian P105 Petaling Jaya (https://mywawasan.org:8000/register/bahagian/p105-petaling-jaya/?tkb=165) atau imbas Kod QR pendaftaran tanpa OTP melalui Ketua Bahagian."`;
+
+            const userPrompt = `Sila hasilkan draf kandungan kempen lengkap dengan butiran berikut:
+- Sasaran PDM: ${pdm}
+- Saluran / Format: ${platform}
+- Tona Bahasa: ${tone}
+${issue ? `- Isu Khusus yang Perlu Diketengahkan: ${issue}` : '- Gunakan isu keutamaan PDM tersebut (isu lif flat, penjaja, atau perparitan).'}
+
+Format jawapan:
+1. Tajuk / Cangkuk Perhatian (Hook)
+2. Isi Utama Kandungan (30-60 saat jika skrip video / bebenang bersiri jika Threads / mesej mesra jika WhatsApp)
+3. Seruan Tindakan (CTA) Rasmi Pendaftaran Ahli PWN P105
+4. Cadangan Hashtag Tempatan (Cth: #TamanMedan #WawasanNegara #SuaraMarhaen #PJS #PetalingJaya)`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userPrompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            try {
+                const data = await fetchGeminiWithBackoff(payload);
+                const candidate = data.candidates?.[0];
+                if (candidate && candidate.content?.parts?.[0]?.text) {
+                    outText.innerText = candidate.content.parts[0].text;
+                    outContainer.classList.remove('hidden');
+                } else {
+                    showAiMessage("Format maklum balas daripada AI tidak dijangka. Sila cuba sekali lagi.", true);
+                }
+            } catch (err) {
+                showAiMessage("Gagal berhubung dengan Gemini API. Sila semak sambungan internet anda dan cuba sebentar lagi.", true);
+            } finally {
+                spinner.classList.add('hidden');
+                btn.disabled = false;
+            }
+        }
+
+        // Compliance Checker: Audit draft against regulations
+        async function checkAiCompliance() {
+            const draft = document.getElementById('complianceInputText').value.trim();
+            if (!draft) {
+                showAiMessage("Sila masukkan teks draf kempen anda terlebih dahulu.", true);
+                return;
+            }
+
+            const spinner = document.getElementById('aiLoadingSpinner');
+            const compContainer = document.getElementById('complianceOutputContainer');
+            const compText = document.getElementById('complianceOutputText');
+            const btn = document.getElementById('btnRunCompliance');
+
+            spinner.classList.remove('hidden');
+            compContainer.classList.add('hidden');
+            btn.disabled = true;
+
+            const systemPrompt = `Anda adalah Pegawai Integriti dan Pematuhan Perundangan Pilihan Raya bagi Parti Wawasan Negara di Selangor.
+Tugas anda adalah menyemak draf kenyataan/mesej kempen politik untuk memastikan ia mematuhi:
+1. Titah DYMM Sultan Selangor (Tiada campur tangan atau politisasi institusi diraja).
+2. Garis Panduan JAIS (Larangan kempen berpolitik dalam masjid, surau, dan institusi agama Islam).
+3. Tiada unsur 3R (Kaum, Agama, Institusi Diraja) yang menghasut.
+4. Menjaga maruah komuniti marhaen B40 (tidak bersifat 'poverty porn' atau memandang rendah).
+5. Kualiti bahasa dan kekuatan seruan tindakan (CTA).`;
+
+            const userPrompt = `Sila semak teks draf kempen berikut:
+"""${draft}"""
+
+Berikan laporan berstruktur:
+1. STATUS PEMATUHAN (Patuh Sepenuhnya / Perlu Pindaan / Berisiko Tinggi)
+2. ANALISIS TITAH DIRAJA & PANDUAN JAIS
+3. ANALISIS SENSITIVITI KAUM & MARTABAT B40
+4. CADANGAN VERSI PENAMBAHBAIKAN (Versi teks yang lebih mantap, selamat, dan mematuhi etika)`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userPrompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            try {
+                const data = await fetchGeminiWithBackoff(payload);
+                const candidate = data.candidates?.[0];
+                if (candidate && candidate.content?.parts?.[0]?.text) {
+                    compText.innerText = candidate.content.parts[0].text;
+                    compContainer.classList.remove('hidden');
+                } else {
+                    showAiMessage("Format laporan tidak dapat diproses. Sila cuba lagi.", true);
+                }
+            } catch (err) {
+                showAiMessage("Ralat semasa menyemak pematuhan melalui Gemini API. Sila cuba semula.", true);
+            } finally {
+                spinner.classList.add('hidden');
+                btn.disabled = false;
+            }
         }
     </script>
 </body>
